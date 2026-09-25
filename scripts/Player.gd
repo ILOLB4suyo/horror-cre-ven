@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
 @export var walk_speed: float = 3.0
+@export var run_speed: float = 5.0
+@export var sneak_speed: float = 1.5
+
 @export var mouse_sensitivity: float = 0.002
 
 @export var peek_angle_degrees: float = 120.0
@@ -13,6 +16,18 @@ const GRAVITY: float = 9.8
 var look_x: float = 0.0
 
 var peek_direction: int = 0
+
+
+enum MovementState{
+	
+	IDLE,
+	WALKING,
+	RUNNING,
+	SNEAKING
+	
+}
+
+var movement_state : MovementState = MovementState.IDLE
 
 
 func _ready() -> void:
@@ -74,16 +89,48 @@ func _physics_process(delta: float) -> void:
 
 
 	var direction := (
-		transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
+		transform.basis * Vector3(
+			input_dir.x, 
+			0.0, 
+			input_dir.y
+		)
 	).normalized()
-
+	
+	var current_speed := 0.0
+	
 	if direction:
-		velocity.x = direction.x * walk_speed
-		velocity.z = direction.z * walk_speed
+		
+		if Input.is_action_pressed("sneak"):
+			movement_state = MovementState.SNEAKING
+			current_speed = sneak_speed
+		
+		elif Input.is_action_pressed("run"):
+			movement_state = MovementState.RUNNING
+			current_speed = run_speed
+		
+		else:
+			movement_state = MovementState.WALKING
+			current_speed = walk_speed
+		
+		velocity.x = direction.x * current_speed
+		velocity.z = direction.z * current_speed
+	
 	else:
-		velocity.x = move_toward(velocity.x, 0.0, walk_speed)
-		velocity.z = move_toward(velocity.z, 0.0, walk_speed)
-
+		
+		movement_state = MovementState.IDLE
+		
+		velocity.x = move_toward(
+			velocity.x,
+			0.0,
+			walk_speed
+		)
+		
+		velocity.z = move_toward(
+			velocity.z,
+			0.0,
+			walk_speed
+		)
+		
 
 
 	var peek_target := 0.0

@@ -4,6 +4,13 @@ extends CharacterBody3D
 @export var run_speed: float = 5.0
 @export var sneak_speed: float = 1.5
 
+
+@export var max_stamina: float = 100.0
+@export var stamina_drain: float = 40.0
+@export var stamina_regen_idle: float = 15.0
+@export var stamina_regen_walk: float = 5.0
+
+
 @export var mouse_sensitivity: float = 0.002
 
 @export var peek_angle_degrees: float = 120.0
@@ -29,6 +36,7 @@ enum MovementState{
 
 var movement_state : MovementState = MovementState.IDLE
 
+var stamina: float = max_stamina
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -104,7 +112,7 @@ func _physics_process(delta: float) -> void:
 			movement_state = MovementState.SNEAKING
 			current_speed = sneak_speed
 		
-		elif Input.is_action_pressed("run"):
+		elif Input.is_action_pressed("run") and stamina > 0.0:
 			movement_state = MovementState.RUNNING
 			current_speed = run_speed
 		
@@ -131,6 +139,31 @@ func _physics_process(delta: float) -> void:
 			walk_speed
 		)
 		
+	
+
+	# stamina
+	match movement_state:
+
+		MovementState.RUNNING:
+			stamina -= stamina_drain * delta
+
+		MovementState.IDLE:
+			stamina += stamina_regen_idle * delta
+
+		MovementState.WALKING:
+			stamina += stamina_regen_walk * delta
+
+		MovementState.SNEAKING:
+			pass
+
+
+	stamina = clamp(
+		stamina,
+		0.0,
+		max_stamina
+	)
+	
+	print("State: ", MovementState.keys()[movement_state], " | Stamina: ", stamina)
 
 
 	var peek_target := 0.0

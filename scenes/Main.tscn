@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://tkyhieqcdoyo" path="res://scripts/Player.gd" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://dac2u2inkmhvr" path="res://scripts/HUD.gd" id="2_rvslj"]
 [ext_resource type="Texture2D" uid="uid://ct4lpsk1r8mim" path="res://assets/ui/crouch.png" id="3_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://cadhnayhsih7a" path="res://BuildingModel.glb" id="4_rarhs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvslj"]
 albedo_color = Color(0.6783632, 0.7759945, 3.85046e-07, 1)
@@ -13,6 +14,9 @@ size = Vector3(12.816467, 0.47961426, 1.6673584)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8d8pf"]
 size = Vector3(12.755859, 0.48937988, 1.6218872)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rarhs"]
+size = Vector3(85.635254, 0.48937988, 60.511795)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elqb8"]
 albedo_color = Color(0.5411765, 0.1254902, 0.1254902, 1)
@@ -86,6 +90,10 @@ mesh = SubResource("BoxMesh_8f85w")
 [node name="FloorCol1" type="CollisionShape3D" parent="Floor" unique_id=1065037632]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.89453125, 0.25531006, 4.2745023)
 shape = SubResource("BoxShape3D_8d8pf")
+
+[node name="FloorCol31" type="CollisionShape3D" parent="Floor" unique_id=680621841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.47455, -1.0588228, -20.721066)
+shape = SubResource("BoxShape3D_rarhs")
 
 [node name="Floor2" type="MeshInstance3D" parent="Floor" unique_id=733735406]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93252563, 0.26019287, 2.5670285)
@@ -352,7 +360,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.854916, 5.1722717, 9.5171
 shape = SubResource("BoxShape3D_vcsgt")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1972053996]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5655923, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.67583, 0.5195589, -8.026262)
 script = ExtResource("1_elqb8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=711857265]
@@ -393,3 +401,6 @@ offset_top = 197.0
 offset_right = 1104.0
 offset_bottom = 397.0
 texture = ExtResource("3_0bbpv")
+
+[node name="BuildingModel" parent="." unique_id=1377109791 instance=ExtResource("4_rarhs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.494415, -0.46279478, -10.230693)

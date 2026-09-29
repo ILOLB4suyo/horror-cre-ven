@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tkyhieqcdoyo" path="res://scripts/Player.gd" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://dac2u2inkmhvr" path="res://scripts/HUD.gd" id="2_rvslj"]
+[ext_resource type="Texture2D" uid="uid://ct4lpsk1r8mim" path="res://assets/ui/crouch.png" id="3_0bbpv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvslj"]
 albedo_color = Color(0.6783632, 0.7759945, 3.85046e-07, 1)
@@ -384,3 +385,11 @@ theme_override_styles/background = SubResource("StyleBoxFlat_elqb8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0bbpv")
 value = 100.0
 show_percentage = false
+
+[node name="CrouchIndicator" type="TextureRect" parent="HUD" unique_id=2007530557]
+visible = false
+offset_left = 904.0
+offset_top = 197.0
+offset_right = 1104.0
+offset_bottom = 397.0
+texture = ExtResource("3_0bbpv")

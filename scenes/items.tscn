@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c767wcffninoi"]
+
+[ext_resource type="Script" uid="uid://cmejeyv5y4x50" path="res://scripts/KeyItem.gd" id="1_cdcin"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xnr1l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pej8m"]
+albedo_color = Color(0, 0, 0.90588236, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8d8pf"]
+material = SubResource("StandardMaterial3D_pej8m")
+
+[node name="items" type="Node3D" unique_id=854294333]
+
+[node name="KeyItem" type="StaticBody3D" parent="." unique_id=869853859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1545954, 0, 0.12188047)
+script = ExtResource("1_cdcin")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KeyItem" unique_id=311728482]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+shape = SubResource("BoxShape3D_xnr1l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="KeyItem" unique_id=1151742062]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = SubResource("BoxMesh_8d8pf")

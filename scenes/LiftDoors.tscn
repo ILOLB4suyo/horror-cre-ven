@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bun7vh6521kc6"]
+
+[ext_resource type="Script" uid="uid://bcd05cno8wxqp" path="res://scripts/LiftDoor.gd" id="1_03742"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_frllw"]
+size = Vector3(0.25439453, 2.7092285, 1.5126953)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_03742"]
+albedo_color = Color(0.3403393, 0.34033933, 0.3403393, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5o5dt"]
+material = SubResource("StandardMaterial3D_03742")
+size = Vector3(0.25054932, 2.6897278, 1.4995117)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxluh"]
+albedo_color = Color(0.7921569, 0.34117648, 0.34117648, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_frllw"]
+material = SubResource("StandardMaterial3D_wxluh")
+size = Vector3(0.25054932, 2.6897278, 1.4995117)
+
+[node name="LiftDoors" type="Node3D" unique_id=168471199]
+
+[node name="LiftDoor" type="StaticBody3D" parent="." unique_id=1553104441]
+script = ExtResource("1_03742")
+
+[node name="LeftCollision" type="CollisionShape3D" parent="LiftDoor" unique_id=1037864321]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.7779663, 1.3587646, -0.06594965)
+shape = SubResource("BoxShape3D_frllw")
+
+[node name="LeftPanel" type="Node3D" parent="LiftDoor" unique_id=1432501636]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.005099833, 0, -0.070205)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LiftDoor/LeftPanel" unique_id=268821291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020904541, 1.359787, -0.7636735)
+mesh = SubResource("BoxMesh_5o5dt")
+
+[node name="RightCollision" type="CollisionShape3D" parent="LiftDoor" unique_id=1328369492]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.70920527, 1.3587646, -0.041624814)
+shape = SubResource("BoxShape3D_frllw")
+
+[node name="RightPanel" type="Node3D" parent="LiftDoor" unique_id=1691235559]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.008271605, 0, -0.0650706)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LiftDoor/RightPanel" unique_id=1668992085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020904541, 1.359787, 0.7494653)
+mesh = SubResource("BoxMesh_frllw")

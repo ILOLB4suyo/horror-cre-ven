@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bogyf3kromreg"]
+
+[ext_resource type="Script" uid="uid://cemd7r70hdrae" path="res://scripts/Document.gd" id="1_uuo0v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8f85w"]
+size = Vector3(0.65234375, 0.41015625, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uuo0v"]
+size = Vector3(0.6519165, 0.36999512, 1)
+
+[node name="Documents" type="Node3D" unique_id=1423803137]
+
+[node name="Document" type="StaticBody3D" parent="." unique_id=25895491]
+script = ExtResource("1_uuo0v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Document" unique_id=1012662538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037109375, 0.2685547, 0)
+mesh = SubResource("BoxMesh_8f85w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Document" unique_id=1324986566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039398193, 0.28900146, 0)
+shape = SubResource("BoxShape3D_uuo0v")

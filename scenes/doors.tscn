@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://beuj3p6cy17t1"]
+
+[ext_resource type="Script" uid="uid://l1bkunxgtivc" path="res://scripts/Door.gd" id="1_5v6d3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8hee"]
+size = Vector3(2.059082, 2.8878174, 0.2211914)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v6d3"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8f85w"]
+material = SubResource("StandardMaterial3D_5v6d3")
+size = Vector3(1.4699707, 2.8848267, 0.20214844)
+
+[node name="doors" type="Node3D" unique_id=1329436505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50900054, 0, 0)
+
+[node name="Door" type="StaticBody3D" parent="." unique_id=1578741921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50155723, 0, -0.07929236)
+script = ExtResource("1_5v6d3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door" unique_id=893053833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0018448, 0.9439087, -0.025567055)
+shape = SubResource("BoxShape3D_k8hee")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Door" unique_id=1484877304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0140518, 0.94241333, -0.03508854)
+mesh = SubResource("BoxMesh_8f85w")

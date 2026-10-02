@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ccb15538bgfiv"]
+
+[ext_resource type="Script" uid="uid://cmejeyv5y4x50" path="res://scripts/KeyItem.gd" id="1_5o5dt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8u5g"]
+albedo_color = Color(0, 0.39068457, 0.36610982, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_nxtc6"]
+material = SubResource("StandardMaterial3D_q8u5g")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lhr70"]
+radius = 0.6541195
+
+[node name="Keycard" type="Node3D" unique_id=475385980]
+
+[node name="KeyCard" type="StaticBody3D" parent="." unique_id=945004753]
+script = ExtResource("1_5o5dt")
+interaction_hold_time = 0.6
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="KeyCard" unique_id=1209530170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49827772, 0)
+mesh = SubResource("PrismMesh_nxtc6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KeyCard" unique_id=384881270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49827772, 0)
+shape = SubResource("SphereShape3D_lhr70")

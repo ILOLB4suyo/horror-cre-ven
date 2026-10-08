@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bogyf3kromreg" path="res://scenes/documents.tscn" id="4_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://cadhnayhsih7a" path="res://BuildingModel.glb" id="4_rarhs"]
 [ext_resource type="PackedScene" uid="uid://beuj3p6cy17t1" path="res://scenes/doors.tscn" id="5_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://cm3oqgo643wpi" path="res://assets/3DBuilding/BuildingModelUpdated.glb" id="5_wp0k4"]
 [ext_resource type="PackedScene" uid="uid://c767wcffninoi" path="res://scenes/items.tscn" id="6_c01mt"]
 [ext_resource type="PackedScene" uid="uid://bun7vh6521kc6" path="res://scenes/LiftDoors.tscn" id="7_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://ccb15538bgfiv" path="res://scenes/keycard.tscn" id="8_jlsqs"]
@@ -384,6 +385,7 @@ mesh = SubResource("BoxMesh_q8u5g")
 
 [node name="BuildingModel" parent="." unique_id=1377109791 instance=ExtResource("4_rarhs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3001618, -0.46279478, -10.230693)
+visible = false
 
 [node name="items" parent="." unique_id=854294333 instance=ExtResource("6_c01mt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8364944, 0.1586141, -16.15226)
@@ -435,6 +437,9 @@ transform = Transform3D(0.9999306, 0, 0.011767864, 0, 1, 0, -0.011767864, 0, 0.9
 [node name="LiftDoor" parent="LiftDoors" index="0" unique_id=1553104441]
 required_item_id = "lift"
 open_speed = 1.0
+
+[node name="BuildingModelUpdated" parent="." unique_id=710095217 instance=ExtResource("5_wp0k4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3696681, -0.44488487, -10.172184)
 
 [node name="Keycard" parent="." unique_id=475385980 instance=ExtResource("8_jlsqs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4711988, -0.30914122, -18.401377)

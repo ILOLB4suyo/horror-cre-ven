@@ -7,8 +7,9 @@ extends CharacterBody3D
 
 @export var max_stamina: float = 100.0
 @export var stamina_drain: float = 40.0
-@export var stamina_regen_idle: float = 15.0
+@export var stamina_regen_idle: float = 15.
 @export var stamina_regen_walk: float = 5.0
+@export var stamina_recovery_threshold: float = 5.0
 
 #@export var stamina_drain: float = 10.0
 #@export var stamina_regen_idle: float = 55.0
@@ -61,6 +62,7 @@ enum MovementState{
 var movement_state : MovementState = MovementState.IDLE
 
 var stamina: float = max_stamina
+var exhausted: bool = false
 
 var owned_items: Array[String] = []
 
@@ -172,7 +174,7 @@ func _physics_process(delta: float) -> void:
 			movement_state = MovementState.SNEAKING
 			current_speed = sneak_speed
 		
-		elif Input.is_action_pressed("run") and stamina > 0.0:
+		elif Input.is_action_pressed("run") and not exhausted:
 			movement_state = MovementState.RUNNING
 			current_speed = run_speed
 		
@@ -257,6 +259,13 @@ func _physics_process(delta: float) -> void:
 		0.0,
 		max_stamina
 	)
+
+
+	if stamina <= 0.0:
+		exhausted = true
+
+	elif exhausted and stamina >= stamina_recovery_threshold:
+		exhausted = false
 	
 	print("State: ", MovementState.keys()[movement_state], " | Stamina: ", stamina)
 

@@ -6,13 +6,13 @@ extends CharacterBody3D
 
 
 @export var max_stamina: float = 100.0
-#@export var stamina_drain: float = 40.0
-#@export var stamina_regen_idle: float = 15.0
-#@export var stamina_regen_walk: float = 5.0
+@export var stamina_drain: float = 40.0
+@export var stamina_regen_idle: float = 15.0
+@export var stamina_regen_walk: float = 5.0
 
-@export var stamina_drain: float = 10.0
-@export var stamina_regen_idle: float = 55.0
-@export var stamina_regen_walk: float = 55.0
+#@export var stamina_drain: float = 10.0
+#@export var stamina_regen_idle: float = 55.0
+#@export var stamina_regen_walk: float = 55.0
 
 @export var walk_bob_frequency: float = 8.0
 @export var walk_bob_amplitude: float = 0.025

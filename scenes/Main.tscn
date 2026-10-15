@@ -13,15 +13,18 @@
 [ext_resource type="PackedScene" uid="uid://ccb15538bgfiv" path="res://scenes/keycard.tscn" id="8_jlsqs"]
 [ext_resource type="PackedScene" uid="uid://cpbypv7vt5ku2" path="res://scenes/Monsters.tscn" id="12_bjd11"]
 
+[ext_resource type="PackedScene" uid="uid://4btovxmy44gx" path="res://assets/3DBuilding/keycard.glb" id="8_qmy6f"]
+[ext_resource type="PackedScene" uid="uid://b5fc5btbx35j2" path="res://assets/3DBuilding/kertaslore.glb" id="9_mwfav"]
+[ext_resource type="PackedScene" uid="uid://dqhhsrv2476vo" path="res://assets/3DBuilding/Doors.glb" id="13_bjd11"]
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_8f85w"]
 vertices = PackedVector3Array(-9.252972, -0.15967304, 2.9730759, -9.252972, -0.15967304, -35.026924, -41.25297, -0.15967304, -35.026924, -41.25297, -0.15967304, 2.9730759, -7.2529716, -0.15967304, 2.9730759, -7.0029716, -0.15967304, 4.223076, 4.9970284, -0.15967304, 4.223076, 5.2470284, -0.15967304, 2.9730759, 7.2470284, -0.15967304, -35.026924, 7.2470284, -0.15967304, 2.9730759, 39.49703, -0.15967304, 2.9730759, 39.49703, -0.15967304, -35.026924, 7.2470284, -0.15967304, 14.973076, 7.2470284, -0.15967304, 5.473076, 5.2470284, -0.15967304, 5.473076, -7.2529716, -0.15967304, 5.473076, -9.252972, -0.15967304, 5.473076, -9.252972, -0.15967304, 14.973076, -41.25297, -0.15967304, 5.473076, -41.25297, -0.15967304, 14.973076, 39.49703, -0.15967304, 14.973076, 39.49703, -0.15967304, 5.473076)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 1), PackedInt32Array(7, 1, 8), PackedInt32Array(4, 0, 1), PackedInt32Array(8, 9, 7), PackedInt32Array(8, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(6, 14, 5), PackedInt32Array(5, 14, 15), PackedInt32Array(15, 14, 17), PackedInt32Array(17, 14, 12), PackedInt32Array(19, 18, 17), PackedInt32Array(17, 18, 16), PackedInt32Array(13, 21, 12), PackedInt32Array(12, 21, 20)]
 geometry_parsed_geometry_type = 0
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"navigation_mesh"
-[ext_resource type="PackedScene" uid="uid://4btovxmy44gx" path="res://assets/3DBuilding/keycard.glb" id="8_qmy6f"]
-[ext_resource type="PackedScene" uid="uid://b5fc5btbx35j2" path="res://assets/3DBuilding/kertaslore.glb" id="9_mwfav"]
-[ext_resource type="PackedScene" uid="uid://dqhhsrv2476vo" path="res://assets/3DBuilding/Doors.glb" id="12_bjd11"]
+
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvslj"]
 albedo_color = Color(0.6783632, 0.7759945, 3.85046e-07, 1)
@@ -262,7 +265,7 @@ mesh = SubResource("BoxMesh_c01mt")
 [node name="RoomSet" parent="Floor" unique_id=729521553 instance=ExtResource("1_mwfav")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3987417, 0.471273, -10.162817)
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1972053996]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1972053996 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9803696, 2.733337, -8.026262)
 script = ExtResource("1_elqb8")
 
@@ -449,31 +452,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.56228, 0, -34.193863)
 [node name="PatrolPoint4" type="Marker3D" parent="PatrolPoints" unique_id=379473657]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.578113, 0, -8.450036)
 
-[node name="Monster" parent="." unique_id=504227797 node_paths=PackedStringArray("patrol_points") groups=["player"] instance=ExtResource("12_bjd11")]
+[node name="Monster" parent="." unique_id=504227797 node_paths=PackedStringArray("patrol_points") instance=ExtResource("12_bjd11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6136522, -0.6349039, -26.057339)
 detection_range = 3.0
 lose_target_range = 5.0
 catch_distance = 1.7
 patrol_points = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2"), NodePath("../PatrolPoints/PatrolPoint3"), NodePath("../PatrolPoints/PatrolPoint4")]
-[node name="Doors" parent="." unique_id=686197820 instance=ExtResource("12_bjd11")]
+[node name="Doors" parent="." unique_id=686197820 instance=ExtResource("13_bjd11")]
 transform = Transform3D(-0.99997115, 0, -0.0075979377, 0, 1, 0, 0.0075979377, 0, -0.99997115, -8.022527, 0.9939059, -8.556908)
 
-[node name="Doors2" parent="." unique_id=1740839498 instance=ExtResource("12_bjd11")]
+[node name="Doors2" parent="." unique_id=1740839498 instance=ExtResource("13_bjd11")]
 transform = Transform3D(-0.9994256, 0, 0.033889152, 0, 1, 0, -0.033889152, 0, -0.9994256, -8.00498, 0.880502, -26.0891)
 
-[node name="Doors3" parent="." unique_id=70711386 instance=ExtResource("12_bjd11")]
+[node name="Doors3" parent="." unique_id=70711386 instance=ExtResource("13_bjd11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.48023, 0.87416923, -27.992544)
 
-[node name="Doors4" parent="." unique_id=1238058087 instance=ExtResource("12_bjd11")]
+[node name="Doors4" parent="." unique_id=1238058087 instance=ExtResource("13_bjd11")]
 transform = Transform3D(-0.9999237, 0, -0.012351287, 0, 1, 0, 0.012351287, 0, -0.9999237, -24.383202, 0.7171577, -27.92658)
 
-[node name="Doors5" parent="." unique_id=2044987114 instance=ExtResource("12_bjd11")]
+[node name="Doors5" parent="." unique_id=2044987114 instance=ExtResource("13_bjd11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2438583, 0.90172315, -23.967606)
 
-[node name="Doors6" parent="." unique_id=790246114 instance=ExtResource("12_bjd11")]
+[node name="Doors6" parent="." unique_id=790246114 instance=ExtResource("13_bjd11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.256433, 0.9171165, -12.658869)
 
-[node name="Doors7" parent="." unique_id=588346360 instance=ExtResource("12_bjd11")]
+[node name="Doors7" parent="." unique_id=588346360 instance=ExtResource("13_bjd11")]
 transform = Transform3D(-1.0048411, 0, 0.023057753, 0, 1.0233276, 0, -0.018144153, 0, -1.2769611, 33.479336, 0.95020175, -35.11704)
 
 [editable path="Documents"]

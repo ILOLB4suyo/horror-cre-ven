@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vtkk8wyualqd"]
 
 [ext_resource type="Script" uid="uid://tkyhieqcdoyo" path="res://scripts/Player.gd" id="1_elqb8"]
+[ext_resource type="PackedScene" uid="uid://ct6kcfwlddma8" path="res://assets/3DBuilding/RoomSet.glb" id="1_mwfav"]
 [ext_resource type="Script" uid="uid://dac2u2inkmhvr" path="res://scripts/HUD.gd" id="2_rvslj"]
 [ext_resource type="Texture2D" uid="uid://ct4lpsk1r8mim" path="res://assets/ui/crouch.png" id="3_0bbpv"]
 [ext_resource type="Shader" uid="uid://pl7ucu6jtcs6" path="res://assets/Main.gdshader" id="4_lhr70"]
@@ -242,6 +243,9 @@ mesh = SubResource("BoxMesh_rarhs")
 [node name="Wall4" type="MeshInstance3D" parent="Floor" unique_id=1060502942]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9063225, 12.294957, -10.785777)
 mesh = SubResource("BoxMesh_c01mt")
+
+[node name="RoomSet" parent="Floor" unique_id=729521553 instance=ExtResource("1_mwfav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3987417, 0.471273, -10.162817)
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1972053996]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9803696, 2.733337, -8.026262)

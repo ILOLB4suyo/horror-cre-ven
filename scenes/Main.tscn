@@ -6,11 +6,13 @@
 [ext_resource type="Shader" uid="uid://pl7ucu6jtcs6" path="res://assets/Main.gdshader" id="4_lhr70"]
 [ext_resource type="PackedScene" uid="uid://bogyf3kromreg" path="res://scenes/documents.tscn" id="4_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://cadhnayhsih7a" path="res://BuildingModel.glb" id="4_rarhs"]
-[ext_resource type="PackedScene" uid="uid://beuj3p6cy17t1" path="res://scenes/doors.tscn" id="5_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://cm3oqgo643wpi" path="res://assets/3DBuilding/BuildingModelUpdated.glb" id="5_wp0k4"]
 [ext_resource type="PackedScene" uid="uid://c767wcffninoi" path="res://scenes/items.tscn" id="6_c01mt"]
 [ext_resource type="PackedScene" uid="uid://bun7vh6521kc6" path="res://scenes/LiftDoors.tscn" id="7_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://ccb15538bgfiv" path="res://scenes/keycard.tscn" id="8_jlsqs"]
+[ext_resource type="PackedScene" uid="uid://4btovxmy44gx" path="res://assets/3DBuilding/keycard.glb" id="8_qmy6f"]
+[ext_resource type="PackedScene" uid="uid://b5fc5btbx35j2" path="res://assets/3DBuilding/kertaslore.glb" id="9_mwfav"]
+[ext_resource type="PackedScene" uid="uid://dqhhsrv2476vo" path="res://assets/3DBuilding/Doors.glb" id="12_bjd11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvslj"]
 albedo_color = Color(0.6783632, 0.7759945, 3.85046e-07, 1)
@@ -90,16 +92,6 @@ albedo_color = Color(0, 0.4807318, 0.02428052, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nxtc6"]
 material = SubResource("StandardMaterial3D_c01mt")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_c01mt"]
-size = Vector3(1.4632568, 2.8878174, 0.2211914)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxtc6"]
-albedo_color = Color(1.0107458e-06, 0.7539731, 0.047319263, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_jlsqs"]
-material = SubResource("StandardMaterial3D_nxtc6")
-size = Vector3(1.4699707, 2.8848267, 0.20214844)
 
 [node name="Main" type="Node3D" unique_id=1343677082]
 
@@ -402,34 +394,11 @@ item_id = "key_green"
 [node name="MeshInstance3D" parent="items2/KeyItem" index="1" unique_id=1151742062]
 mesh = SubResource("BoxMesh_nxtc6")
 
-[node name="doors" parent="." unique_id=1329436505 instance=ExtResource("5_vcsgt")]
-transform = Transform3D(-0.99972343, 0, -0.023520535, 0, 1, 0, 0.023520535, 0, -0.99972343, 4.871355, -0.13490438, -24.799057)
+[node name="keycard" parent="items2/KeyItem" index="2" unique_id=2098443370 instance=ExtResource("8_qmy6f")]
+transform = Transform3D(0.6858168, 0, 0, 0, 1, 0, 0, 0, 0.60161275, -2.062981, -0.5623435, -6.923971)
 
-[node name="Door" parent="doors" index="0" unique_id=1578741921]
-transform = Transform3D(0.03401203, 0, 0.9994214, 0, 1, 0, -0.9994214, 0, 0.03401203, -0.50155735, 0, -0.0792923)
-required_item_id = "key_blue"
-
-[node name="CollisionShape3D" parent="doors/Door" index="0" unique_id=893053833]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7039337, 0.9439087, -0.025566578)
-shape = SubResource("BoxShape3D_c01mt")
-
-[node name="MeshInstance3D" parent="doors/Door" index="1" unique_id=1484877304]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7072849, 0.94241333, -0.03508854)
-
-[node name="doors2" parent="." unique_id=863382822 instance=ExtResource("5_vcsgt")]
-transform = Transform3D(-0.99972343, 0, -0.023520535, 0, 1, 0, 0.023520535, 0, -0.99972343, 4.871355, -0.13490438, -13.551518)
-
-[node name="Door" parent="doors2" index="0" unique_id=1578741921]
-transform = Transform3D(0.03401203, 0, 0.9994214, 0, 1, 0, -0.9994214, 0, 0.03401203, -0.5008049, 0, -0.11127567)
-required_item_id = "key_green"
-
-[node name="CollisionShape3D" parent="doors2/Door" index="0" unique_id=893053833]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7039337, 0.9439087, -0.025566578)
-shape = SubResource("BoxShape3D_c01mt")
-
-[node name="MeshInstance3D" parent="doors2/Door" index="1" unique_id=1484877304]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7072849, 0.94241333, -0.03508854)
-mesh = SubResource("BoxMesh_jlsqs")
+[node name="kertaslore" parent="items2/KeyItem" index="3" unique_id=2146348856 instance=ExtResource("9_mwfav")]
+transform = Transform3D(0.033536065, 0, 0.4605683, 0, 0.99999994, 0, -0.53736866, 0, 0.028743116, -10.986304, 0.3336571, -9.643061)
 
 [node name="LiftDoors" parent="." unique_id=168471199 instance=ExtResource("7_nxtc6")]
 transform = Transform3D(0.9999306, 0, 0.011767864, 0, 1, 0, -0.011767864, 0, 0.9999306, -1.1740087, -0.35082793, -29.605305)
@@ -447,10 +416,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4711988, -0.30914122, -18.4
 [node name="KeyCard" parent="Keycard" index="0" unique_id=945004753]
 item_id = "lift"
 
+[node name="Doors" parent="." unique_id=686197820 instance=ExtResource("12_bjd11")]
+transform = Transform3D(-0.99997115, 0, -0.0075979377, 0, 1, 0, 0.0075979377, 0, -0.99997115, -8.022527, 0.9939059, -8.556908)
+
+[node name="Doors2" parent="." unique_id=1740839498 instance=ExtResource("12_bjd11")]
+transform = Transform3D(-0.9994256, 0, 0.033889152, 0, 1, 0, -0.033889152, 0, -0.9994256, -8.00498, 0.880502, -26.0891)
+
+[node name="Doors3" parent="." unique_id=70711386 instance=ExtResource("12_bjd11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.48023, 0.87416923, -27.992544)
+
+[node name="Doors4" parent="." unique_id=1238058087 instance=ExtResource("12_bjd11")]
+transform = Transform3D(-0.9999237, 0, -0.012351287, 0, 1, 0, 0.012351287, 0, -0.9999237, -24.383202, 0.7171577, -27.92658)
+
+[node name="Doors5" parent="." unique_id=2044987114 instance=ExtResource("12_bjd11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2438583, 0.90172315, -23.967606)
+
+[node name="Doors6" parent="." unique_id=790246114 instance=ExtResource("12_bjd11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.256433, 0.9171165, -12.658869)
+
+[node name="Doors7" parent="." unique_id=588346360 instance=ExtResource("12_bjd11")]
+transform = Transform3D(-1.0048411, 0, 0.023057753, 0, 1.0233276, 0, -0.018144153, 0, -1.2769611, 33.479336, 0.95020175, -35.11704)
+
 [editable path="Documents"]
 [editable path="items"]
 [editable path="items2"]
-[editable path="doors"]
-[editable path="doors2"]
 [editable path="LiftDoors"]
 [editable path="Keycard"]

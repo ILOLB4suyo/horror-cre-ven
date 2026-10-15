@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var stamina_regen_idle: float = 15.
 @export var stamina_regen_walk: float = 5.0
 @export var stamina_recovery_threshold: float = 5.0
-
+	
 #@export var stamina_drain: float = 10.0
 #@export var stamina_regen_idle: float = 55.0
 #@export var stamina_regen_walk: float = 55.0
@@ -36,6 +36,8 @@ extends CharacterBody3D
 var interaction_target: Interactable = null
 var interaction_progress: float = 0.0
 var is_reading: bool = false
+
+var is_dead: bool = false
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -94,6 +96,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_reading:
 		return
 	
+
+	
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 
@@ -108,7 +112,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 
-
+	if is_dead:
+		return
 
 	if event.is_action_pressed("peek_left"):
 		if peek_direction == 0:
@@ -136,6 +141,11 @@ func has_interaction_target() -> bool:
 
 func _physics_process(delta: float) -> void:
 
+	if is_dead:
+		velocity = Vector3.ZERO
+		move_and_slide()
+		return
+	
 	if is_reading:
 		velocity = Vector3.ZERO
 		return
@@ -290,7 +300,20 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func die() -> void:
+	if is_dead:
+		return
 
+	is_dead = true
+	velocity = Vector3.ZERO
+
+	interaction_target = null
+	interaction_progress = 0.0
+	peek_direction = 0
+
+	hud.hide_interaction_prompt()
+
+	print("PLAYER STATUS: DEAD")
 
 
 func update_camera_bob(delta: float, movement_amount: float) -> void:

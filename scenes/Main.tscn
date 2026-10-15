@@ -11,6 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://c767wcffninoi" path="res://scenes/items.tscn" id="6_c01mt"]
 [ext_resource type="PackedScene" uid="uid://bun7vh6521kc6" path="res://scenes/LiftDoors.tscn" id="7_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://ccb15538bgfiv" path="res://scenes/keycard.tscn" id="8_jlsqs"]
+[ext_resource type="PackedScene" uid="uid://cpbypv7vt5ku2" path="res://scenes/Monsters.tscn" id="12_bjd11"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_8f85w"]
+vertices = PackedVector3Array(-9.252972, -0.15967304, 2.9730759, -9.252972, -0.15967304, -35.026924, -41.25297, -0.15967304, -35.026924, -41.25297, -0.15967304, 2.9730759, -7.2529716, -0.15967304, 2.9730759, -7.0029716, -0.15967304, 4.223076, 4.9970284, -0.15967304, 4.223076, 5.2470284, -0.15967304, 2.9730759, 7.2470284, -0.15967304, -35.026924, 7.2470284, -0.15967304, 2.9730759, 39.49703, -0.15967304, 2.9730759, 39.49703, -0.15967304, -35.026924, 7.2470284, -0.15967304, 14.973076, 7.2470284, -0.15967304, 5.473076, 5.2470284, -0.15967304, 5.473076, -7.2529716, -0.15967304, 5.473076, -9.252972, -0.15967304, 5.473076, -9.252972, -0.15967304, 14.973076, -41.25297, -0.15967304, 5.473076, -41.25297, -0.15967304, 14.973076, 39.49703, -0.15967304, 14.973076, 39.49703, -0.15967304, 5.473076)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 1), PackedInt32Array(7, 1, 8), PackedInt32Array(4, 0, 1), PackedInt32Array(8, 9, 7), PackedInt32Array(8, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(6, 14, 5), PackedInt32Array(5, 14, 15), PackedInt32Array(15, 14, 17), PackedInt32Array(17, 14, 12), PackedInt32Array(19, 18, 17), PackedInt32Array(17, 18, 16), PackedInt32Array(13, 21, 12), PackedInt32Array(12, 21, 20)]
+geometry_parsed_geometry_type = 0
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"navigation_mesh"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvslj"]
 albedo_color = Color(0.6783632, 0.7759945, 3.85046e-07, 1)
@@ -103,11 +111,14 @@ size = Vector3(1.4699707, 2.8848267, 0.20214844)
 
 [node name="Main" type="Node3D" unique_id=1343677082]
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1928176666]
+navigation_mesh = SubResource("NavigationMesh_8f85w")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=215700592]
 transform = Transform3D(0.9713254, 0.22144857, -0.08653068, 0.07789215, 0.04746623, 0.99583125, 0.22463268, -0.9740162, 0.028856048, 0, 16.749214, 0)
 light_energy = 1.863
 
-[node name="Floor" type="StaticBody3D" parent="." unique_id=375513422]
+[node name="Floor" type="StaticBody3D" parent="." unique_id=375513422 groups=["navigation_mesh"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9300588, 0)
 
 [node name="Floor1" type="MeshInstance3D" parent="Floor" unique_id=1584253592]
@@ -237,21 +248,25 @@ mesh = SubResource("BoxMesh_0bbpv")
 
 [node name="Wall1" type="MeshInstance3D" parent="Floor" unique_id=1404455724]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93252563, 14.88241, -39.177467)
+visible = false
 mesh = SubResource("BoxMesh_elqb8")
 
 [node name="Wall2" type="MeshInstance3D" parent="Floor" unique_id=451319764]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93252563, 8.782823, 18.672253)
+visible = false
 mesh = SubResource("BoxMesh_vcsgt")
 
 [node name="Wall3" type="MeshInstance3D" parent="Floor" unique_id=370771255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.974058, 13.720764, -9.574732)
+visible = false
 mesh = SubResource("BoxMesh_rarhs")
 
 [node name="Wall4" type="MeshInstance3D" parent="Floor" unique_id=1060502942]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9063225, 12.294957, -10.785777)
+visible = false
 mesh = SubResource("BoxMesh_c01mt")
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1972053996]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1972053996 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9803696, 2.733337, -8.026262)
 script = ExtResource("1_elqb8")
 
@@ -385,7 +400,6 @@ mesh = SubResource("BoxMesh_q8u5g")
 
 [node name="BuildingModel" parent="." unique_id=1377109791 instance=ExtResource("4_rarhs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3001618, -0.46279478, -10.230693)
-visible = false
 
 [node name="items" parent="." unique_id=854294333 instance=ExtResource("6_c01mt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8364944, 0.1586141, -16.15226)
@@ -440,12 +454,34 @@ open_speed = 1.0
 
 [node name="BuildingModelUpdated" parent="." unique_id=710095217 instance=ExtResource("5_wp0k4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3696681, -0.44488487, -10.172184)
+visible = false
 
 [node name="Keycard" parent="." unique_id=475385980 instance=ExtResource("8_jlsqs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4711988, -0.30914122, -18.401377)
 
 [node name="KeyCard" parent="Keycard" index="0" unique_id=945004753]
 item_id = "lift"
+
+[node name="PatrolPoints" type="Node3D" parent="." unique_id=1523040316]
+
+[node name="PatrolPoint1" type="Marker3D" parent="PatrolPoints" unique_id=1894602956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.2702055)
+
+[node name="PatrolPoint2" type="Marker3D" parent="PatrolPoints" unique_id=2126549608]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.243932, 0, -22.05217)
+
+[node name="PatrolPoint3" type="Marker3D" parent="PatrolPoints" unique_id=1819110832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.56228, 0, -34.193863)
+
+[node name="PatrolPoint4" type="Marker3D" parent="PatrolPoints" unique_id=379473657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.578113, 0, -8.450036)
+
+[node name="Monster" parent="." unique_id=504227797 node_paths=PackedStringArray("patrol_points") groups=["player"] instance=ExtResource("12_bjd11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6136522, -0.6349039, -26.057339)
+detection_range = 3.0
+lose_target_range = 5.0
+catch_distance = 1.7
+patrol_points = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2"), NodePath("../PatrolPoints/PatrolPoint3"), NodePath("../PatrolPoints/PatrolPoint4")]
 
 [editable path="Documents"]
 [editable path="items"]

@@ -10,7 +10,7 @@ func can_interact(_player) -> bool:
 
 
 func get_interaction_text(_player) -> String:
-	return "HOLD E"
+	return "HOLD F"
 
 
 func interact(_player) -> void:

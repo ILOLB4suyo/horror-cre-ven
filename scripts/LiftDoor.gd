@@ -1,5 +1,14 @@
 extends Interactable
 
+signal lift_opened
+
+@export_group("Monster2 Spawn")
+@export var monster2_scene: PackedScene
+@export var monster2_spawn_point: Node3D
+
+var monster2_spawned: bool = false
+
+
 
 @export var required_item_id: String = ""
 @export var slide_distance: float = 1.0
@@ -40,6 +49,24 @@ func _ready() -> void:
 	left_target_collision_position = left_closed_collision_position
 	right_target_collision_position = right_closed_collision_position
 
+func spawn_monster2() -> void:
+	if monster2_spawned:
+		return
+
+	if monster2_scene == null:
+		push_error("LiftDoor: Monster2 scene belum diatur.")
+		return
+
+	var monster := monster2_scene.instantiate()
+
+	get_tree().current_scene.add_child(monster)
+
+	if monster2_spawn_point != null:
+		monster.global_position = monster2_spawn_point.global_position
+
+	monster2_spawned = true
+	print("LiftDoor: Monster2 spawned.")
+
 
 func can_interact(player) -> bool:
 	if is_open:
@@ -67,6 +94,10 @@ func interact(player: Node) -> void:
 
 	is_open = true
 
+	lift_opened.emit()
+	spawn_monster2()
+	
+	
 	left_target_position = left_closed_position
 	left_target_position.x -= slide_distance
 

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://da4wj64y0yscv"]
+
+[ext_resource type="Script" uid="uid://cr0o4alceg8s" path="res://scripts/Monster2.gd..gd" id="1_iom3g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a5wee"]
+height = 1.2392578
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8f85w"]
+height = 1.1904297
+
+[node name="Monster2" type="CharacterBody3D" unique_id=1264851475]
+script = ExtResource("1_iom3g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1593325846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3803711, 0)
+shape = SubResource("CapsuleShape3D_a5wee")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=946972702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40478516, 0)
+mesh = SubResource("CapsuleMesh_8f85w")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=447351389]
+path_desired_distance = 0.5
+target_desired_distance = 0.8
+navigation_layers = 255

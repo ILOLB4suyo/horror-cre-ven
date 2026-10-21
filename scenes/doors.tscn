@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://beuj3p6cy17t1"]
 
 [ext_resource type="Script" uid="uid://l1bkunxgtivc" path="res://scripts/Door.gd" id="1_5v6d3"]
+[ext_resource type="PackedScene" uid="uid://dqhhsrv2476vo" path="res://assets/3DBuilding/Doors.glb" id="2_26m4p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k8hee"]
 size = Vector3(2.059082, 2.8878174, 0.2211914)
@@ -19,10 +20,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50900054, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50155723, 0, -0.07929236)
 script = ExtResource("1_5v6d3")
 
+[node name="Doors" parent="Door" unique_id=911487938 instance=ExtResource("2_26m4p")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0.7533468, 0.8153579, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door" unique_id=893053833]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0018448, 0.9439087, -0.025567055)
 shape = SubResource("BoxShape3D_k8hee")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Door" unique_id=1484877304]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0140518, 0.94241333, -0.03508854)
+visible = false
 mesh = SubResource("BoxMesh_8f85w")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c767wcffninoi"]
 
 [ext_resource type="Script" uid="uid://cmejeyv5y4x50" path="res://scripts/KeyItem.gd" id="1_cdcin"]
+[ext_resource type="PackedScene" uid="uid://4btovxmy44gx" path="res://assets/3DBuilding/keycard.glb" id="2_sj0ge"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xnr1l"]
 
@@ -22,4 +23,8 @@ shape = SubResource("BoxShape3D_xnr1l")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="KeyItem" unique_id=1151742062]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_8d8pf")
+
+[node name="keycard" parent="." unique_id=1130747377 instance=ExtResource("2_sj0ge")]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, -0.24454635, 0.20977017, 0.12592578)

@@ -137,7 +137,7 @@ material = SubResource("StandardMaterial3D_8f85w")
 size = Vector3(0.698761, 10.353088, 48.699963)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cvmbd"]
-size = Vector3(0.234375, 4.0133057, 7.234887)
+size = Vector3(0.234375, 4.0133057, 7.2357235)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1nqs0"]
 size = Vector3(0.234375, 4.0133057, 12.72611)
@@ -452,11 +452,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9063225, 12.294957, -10.7
 visible = false
 mesh = SubResource("BoxMesh_c01mt")
 
-[node name="RoomSet" parent="Floor" unique_id=729521553 instance=ExtResource("1_mwfav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3987417, 0.471273, -10.162817)
-
 [node name="Wall_Col" type="CollisionShape3D" parent="Floor" unique_id=2057347485]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.356867, 2.1282325, -2.3072019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.356867, 2.1282325, -2.30762)
 shape = SubResource("BoxShape3D_cvmbd")
 
 [node name="Wall_Col5" type="CollisionShape3D" parent="Floor" unique_id=1546385401]
@@ -526,6 +523,9 @@ shape = SubResource("BoxShape3D_gsxep")
 [node name="Wall_Col18" type="CollisionShape3D" parent="Floor" unique_id=1821742143]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.095989, 2.1282325, -28.416283)
 shape = SubResource("BoxShape3D_v0vrg")
+
+[node name="RoomSet" parent="." unique_id=729521553 instance=ExtResource("1_mwfav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3987417, -0.45878577, -23.691725)
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1972053996 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9803696, 2.733337, -8.026262)

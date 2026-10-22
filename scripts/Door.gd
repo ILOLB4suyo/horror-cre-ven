@@ -30,7 +30,7 @@ func get_interaction_text(player) -> String:
 	if not player.has_item(required_item_id):
 		return "LOCKED"
 
-	return "HOLD E"
+	return "HOLD F"
 
 
 func interact(player: Node) -> void:

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cpbypv7vt5ku2"]
 
 [ext_resource type="Script" uid="uid://cblh67i17ppik" path="res://scripts/Monster.gd" id="1_2732j"]
+[ext_resource type="PackedScene" uid="uid://dh5ekarmquv4l" path="res://assets/characters/zombies.glb" id="2_67arq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8f85w"]
 
@@ -19,6 +20,10 @@ shape = SubResource("CapsuleShape3D_8f85w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1367468931]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0079575, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_8d8pf")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=602967139]
+
+[node name="zombies" parent="." unique_id=2056485094 instance=ExtResource("2_67arq")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.01678443, 0, 0.024919152)

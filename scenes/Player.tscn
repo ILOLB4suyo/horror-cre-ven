@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c3p04t368lmu1"]
+
+[ext_resource type="Script" uid="uid://tkyhieqcdoyo" path="res://scripts/Player.gd" id="1_p0vlq"]
+[ext_resource type="PackedScene" uid="uid://cpngwvva203k5" path="res://assets/characters/carnation/Carmine_Headless.glb" id="2_v6fml"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8f85w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnr1l"]
+albedo_color = Color(0.36862746, 0.654902, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8f85w"]
+material = SubResource("StandardMaterial3D_xnr1l")
+
+[node name="Player" type="CharacterBody3D" unique_id=1580578200 groups=["player"]]
+script = ExtResource("1_p0vlq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=946147127]
+shape = SubResource("CapsuleShape3D_8f85w")
+
+[node name="Head" type="Node3D" parent="." unique_id=1152135117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6152339, -0.3459078)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=134417614]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1682628053]
+visible = false
+mesh = SubResource("CapsuleMesh_8f85w")
+
+[node name="Carmine_Headless" parent="." unique_id=1372846856 instance=ExtResource("2_v6fml")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.01992625, -0.62049913, -0.04972911)

@@ -99,8 +99,14 @@ func _physics_process(delta: float) -> void:
 
 
 
+
 func update_state() -> void:
 	if player == null or not is_instance_valid(player):
+		return
+
+	if is_player_hidden():
+		if current_state == MonsterState.CHASE:
+			start_search()
 		return
 
 	var distance_to_player := global_position.distance_to(
@@ -141,6 +147,7 @@ func update_state() -> void:
 
 
 
+
 func start_search() -> void:
 	current_state = MonsterState.SEARCH
 	search_timer = search_duration
@@ -158,7 +165,8 @@ func search_for_player(delta: float) -> void:
 	)
 
 	if (
-		distance_to_player <= detection_range
+		not is_player_hidden()
+		and distance_to_player <= detection_range
 		and has_line_of_sight()
 	):
 		current_state = MonsterState.CHASE
@@ -342,6 +350,9 @@ func catch_player() -> void:
 	if current_state == MonsterState.DEAD:
 		return
 
+	if is_player_hidden():
+		return
+
 	current_state = MonsterState.DEAD
 	velocity = Vector3.ZERO
 
@@ -349,3 +360,10 @@ func catch_player() -> void:
 
 	if player.has_method("die"):
 		player.die()
+
+
+func is_player_hidden() -> bool:
+	if player == null or not is_instance_valid(player):
+		return false
+
+	return bool(player.get("is_hiding"))

@@ -33,6 +33,10 @@ extends CharacterBody3D
 @export var interaction_distance: float = 3.0
 
 
+var is_hiding: bool = false
+var current_locker: Interactable = null
+
+
 var interaction_target: Interactable = null
 var interaction_progress: float = 0.0
 var is_reading: bool = false
@@ -92,11 +96,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		return
 
+	if is_hiding:
+		if event.is_action_pressed("interact"):
+			if current_locker != null:
+				current_locker.request_exit(self)
+		return
 
 	if is_reading:
 		return
 	
-
 	
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sensitivity)
@@ -140,6 +148,24 @@ func has_interaction_target() -> bool:
 
 
 func _physics_process(delta: float) -> void:
+
+	if is_hiding:
+		velocity = Vector3.ZERO
+
+		stamina += stamina_regen_idle * delta
+
+		stamina = clamp(
+			stamina,
+			0.0,
+			max_stamina
+		)
+
+		if stamina <= 0.0:
+			exhausted = true
+		elif exhausted and stamina >= stamina_recovery_threshold:
+			exhausted = false
+
+		return
 
 	if is_dead:
 		velocity = Vector3.ZERO
@@ -465,3 +491,53 @@ func close_document() -> void:
 	hud.hide_document()
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+
+
+func enter_locker(locker: Node) -> void:
+	if is_hiding or is_dead:
+		return
+
+	is_hiding = true
+	current_locker = locker
+
+	velocity = Vector3.ZERO
+	interaction_target = null
+	interaction_progress = 0.0
+	peek_direction = 0
+
+	hud.hide_interaction_prompt()
+
+	global_position = locker.hide_position.global_position
+
+	global_rotation.y = locker.hide_position.global_rotation.y
+
+
+	head.rotation.x = 0.0
+	head.rotation.y = 0.0
+
+	look_x = 0.0
+
+
+
+func exit_locker(locker: Node) -> void:
+	if not is_hiding:
+		return
+	
+	hud.hide_interaction_prompt()
+	
+	global_position = locker.exit_position.global_position
+	
+	velocity = Vector3.ZERO
+	is_hiding = false
+	current_locker = null
+	
+
+
+func show_locker_exit_prompt() -> void:
+	hud.show_interaction_prompt("F TO EXIT")
+
+
+func hide_locker_exit_prompt() -> void:
+	hud.hide_interaction_prompt()

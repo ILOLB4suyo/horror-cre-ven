@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://da4wj64y0yscv"]
 
-[ext_resource type="Script" uid="uid://cr0o4alceg8s" path="res://scripts/Monster2.gd..gd" id="1_iom3g"]
+[ext_resource type="Script" uid="uid://cr0o4alceg8s" path="res://scripts/Monster2.gd" id="1_iom3g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a5wee"]
 height = 1.2392578

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Locker.glb-ae5355b5484de0655b0353f5c111463b.s
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="StaticBody3D"
 nodes/root_name=""
 nodes/root_script=null
 mesh_library/use_node_names_as_mesh_names=false

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://usf2cn413f8t"]
+
+[ext_resource type="PackedScene" uid="uid://vfpnvqh88sde" path="res://assets/3DBuilding/Locker.glb" id="1_46kxn"]
+[ext_resource type="Script" uid="uid://dsfbpab5kpdwp" path="res://scripts/Locker.gd" id="2_byg57"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8f85w"]
+size = Vector3(0.8139496, 2.3377075, 0.037427902)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_46kxn"]
+size = Vector3(0.03655815, 2.3377075, 0.7755499)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ft6cd"]
+albedo_color = Color(0, 1, 1, 1)
+
+[node name="Locker" unique_id=1344819323 instance=ExtResource("1_46kxn")]
+script = ExtResource("2_byg57")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1625789108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0059432983, 1.1654358, -0.39373112)
+shape = SubResource("BoxShape3D_8f85w")
+debug_color = Color(0.9254902, 0, 0, 0.41960785)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="2" unique_id=823070320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39463902, 1.1654358, -0.024670124)
+shape = SubResource("BoxShape3D_46kxn")
+debug_color = Color(0.9254902, 0, 0, 0.41960785)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." index="3" unique_id=90047502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39779222, 1.1654358, -0.024670124)
+shape = SubResource("BoxShape3D_46kxn")
+debug_color = Color(0.9254902, 0, 0, 0.41960785)
+
+[node name="Door" parent="." index="4" unique_id=283382801]
+material_override = SubResource("StandardMaterial3D_ft6cd")
+
+[node name="HidePosition" type="Marker3D" parent="." index="6" unique_id=1588889478]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.16107059, -0.40855932)
+
+[node name="ExitPosition" type="Marker3D" parent="." index="7" unique_id=1369810503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1911425, 0.7384634)

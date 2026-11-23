@@ -251,6 +251,11 @@ func _physics_process(delta: float) -> void:
 	var new_target := get_interaction_target()
 
 	if new_target != interaction_target:
+
+		# Batalkan interaksi pada objek sebelumnya
+		if interaction_target != null and interaction_progress > 0.0:
+			interaction_target.interaction_cancelled(self)
+
 		interaction_target = new_target
 		interaction_progress = 0.0
 		hud.set_interaction_progress(0.0)
@@ -326,7 +331,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func die() -> void:
+func die(jumpscare_video: VideoStream) -> void:
 	if is_dead:
 		return
 
@@ -341,6 +346,7 @@ func die() -> void:
 
 	print("PLAYER STATUS: DEAD")
 
+	hud.play_death_sequence(jumpscare_video)
 
 func update_camera_bob(delta: float, movement_amount: float) -> void:
 	if movement_amount <= 0.0:
@@ -445,11 +451,18 @@ func update_interaction(delta: float) -> void:
 		return
 
 	if not interaction_target.can_interact(self):
+		if interaction_progress > 0.0:
+			interaction_target.interaction_cancelled(self)
+
 		interaction_progress = 0.0
 		hud.set_interaction_progress(0.0)
 		return
 
 	if Input.is_action_pressed("interact"):
+
+		if interaction_progress == 0.0:
+			interaction_target.interaction_started(self)
+
 		interaction_progress += delta / interaction_target.interaction_hold_time
 
 		interaction_progress = clamp(
@@ -469,6 +482,9 @@ func update_interaction(delta: float) -> void:
 			hud.hide_interaction_prompt()
 
 	else:
+		if interaction_progress > 0.0:
+			interaction_target.interaction_cancelled(self)
+
 		interaction_progress = 0.0
 		hud.set_interaction_progress(0.0)
 

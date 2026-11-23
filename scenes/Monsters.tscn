@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cpbypv7vt5ku2"]
 
 [ext_resource type="Script" uid="uid://cblh67i17ppik" path="res://scripts/Monster.gd" id="1_2732j"]
-[ext_resource type="PackedScene" uid="uid://dh5ekarmquv4l" path="res://assets/characters/zombies.glb" id="2_67arq"]
+[ext_resource type="PackedScene" uid="uid://dwrxn34pagh1f" path="res://assets/characters/ZombiesModel.glb" id="2_67arq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8f85w"]
 
@@ -25,5 +25,25 @@ mesh = SubResource("CapsuleMesh_8d8pf")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=602967139]
 
-[node name="zombies" parent="." unique_id=2056485094 instance=ExtResource("2_67arq")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.01678443, 0, 0.024919152)
+[node name="zombies" parent="." unique_id=443985376 instance=ExtResource("2_67arq")]
+transform = Transform3D(-0.9848077, 0, 0.17364822, 0, 1, 0, -0.17364822, 0, -0.9848077, 0, 0, 0)
+
+[node name="Skeleton3D" parent="zombies/Armature" parent_id_path=PackedInt32Array(443985376, 488203201) index="0" unique_id=1665245879]
+bones/0/rotation = Quaternion(-0.008674649, 0, 0, 0.9999624)
+bones/1/rotation = Quaternion(0.04809229, 0, 0, 0.9988429)
+bones/3/rotation = Quaternion(0.19359277, 1.7653447e-14, 4.6156106e-08, 0.98108196)
+bones/5/rotation = Quaternion(0.007789032, 0.0044053122, -0.603772, 0.79710686)
+bones/6/rotation = Quaternion(0.0010790699, 0.0019359338, -0.015137824, 0.999883)
+bones/7/rotation = Quaternion(0.006511769, 0.009632588, -0.042622533, 0.9990237)
+bones/9/rotation = Quaternion(2.5697346e-07, -1.4612867e-07, 0.56041217, 0.82821393)
+bones/10/rotation = Quaternion(0.0026845508, -0.0058605475, 0.058975033, 0.99823874)
+bones/11/rotation = Quaternion(0.0064672907, -0.01141422, 0.05819034, 0.9982194)
+bones/12/rotation = Quaternion(0.51050127, 0.48927358, 0.51050115, -0.48927355)
+bones/13/rotation = Quaternion(-0.6755823, -1.5506734e-08, 9.0878586e-08, 0.73728466)
+bones/14/rotation = Quaternion(0.011365791, 2.7812526e-08, -1.7200117e-08, 0.9999354)
+bones/16/rotation = Quaternion(0.51050127, -0.48927358, -0.51050115, -0.48927355)
+bones/17/rotation = Quaternion(-0.6678236, 8.58144e-10, -7.6755015e-08, 0.7443196)
+bones/18/rotation = Quaternion(-0.0023165902, -1.2363245e-07, 1.5901175e-08, 0.9999973)
+bones/19/rotation = Quaternion(-0.011929111, 0.02166336, 0.6907888, 0.7226336)
+
+[editable path="zombies"]

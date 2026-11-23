@@ -9,11 +9,15 @@ size = Vector3(0.8139496, 2.3377075, 0.037427902)
 [sub_resource type="BoxShape3D" id="BoxShape3D_46kxn"]
 size = Vector3(0.03655815, 2.3377075, 0.7755499)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_byg57"]
+size = Vector3(0.03655815, 2.3377075, 0.2626953)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ft6cd"]
 albedo_color = Color(0, 1, 1, 1)
 
-[node name="Locker" unique_id=1344819323 instance=ExtResource("1_46kxn")]
+[node name="Locker" unique_id=1344819323 node_paths=PackedStringArray("door_mesh") instance=ExtResource("1_46kxn")]
 script = ExtResource("2_byg57")
+door_mesh = NodePath("Door")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1625789108]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0059432983, 1.1654358, -0.39373112)
@@ -25,16 +29,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39463902, 1.1654358, -0.02
 shape = SubResource("BoxShape3D_46kxn")
 debug_color = Color(0.9254902, 0, 0, 0.41960785)
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="." index="3" unique_id=90047502]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." index="3" unique_id=421106892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39463902, 1.1654358, 0.77033365)
+shape = SubResource("BoxShape3D_byg57")
+debug_color = Color(0.9254902, 0, 0, 0.41960785)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." index="4" unique_id=90047502]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39779222, 1.1654358, -0.024670124)
 shape = SubResource("BoxShape3D_46kxn")
 debug_color = Color(0.9254902, 0, 0, 0.41960785)
 
-[node name="Door" parent="." index="4" unique_id=283382801]
-material_override = SubResource("StandardMaterial3D_ft6cd")
+[node name="Cube_002" parent="." index="5" unique_id=1625854401]
+visible = false
 
-[node name="HidePosition" type="Marker3D" parent="." index="6" unique_id=1588889478]
+[node name="Cube_003" parent="." index="6" unique_id=1968590805]
+visible = false
+
+[node name="HidePosition" type="Marker3D" parent="." index="7" unique_id=1588889478]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.16107059, -0.40855932)
 
-[node name="ExitPosition" type="Marker3D" parent="." index="7" unique_id=1369810503]
+[node name="ExitPosition" type="Marker3D" parent="." index="8" unique_id=1369810503]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1911425, 0.7384634)
+
+[node name="Door" parent="." index="9" unique_id=772179598]
+material_override = SubResource("StandardMaterial3D_ft6cd")

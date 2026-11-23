@@ -15,3 +15,11 @@ func get_interaction_text(_player) -> String:
 
 func interact(_player) -> void:
 	pass
+
+
+func interaction_started(_player) -> void:
+	pass
+
+
+func interaction_cancelled(_player) -> void:
+	pass

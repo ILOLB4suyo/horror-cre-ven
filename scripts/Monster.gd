@@ -24,6 +24,8 @@ enum MonsterState {
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 
+
+
 @export_group("Navigation Recovery")
 @export var repath_interval: float = 0.5
 @export var stuck_check_interval: float = 1.0
@@ -33,6 +35,15 @@ enum MonsterState {
 @export var search_duration: float = 5.0
 @export var search_arrival_distance: float = 1.0
 @export var search_radius: float = 3.0
+
+@onready var animation_player: AnimationPlayer = $zombies/AnimationPlayer
+@export var search_pause_duration: float = 1.5
+
+var search_pause_timer: float = 0.0
+
+@export_group("Jumpscare")
+@export var jumpscare_video: VideoStream
+
 
 var search_timer: float = 0.0
 var last_seen_player_position: Vector3 = Vector3.ZERO
@@ -94,6 +105,8 @@ func _physics_process(delta: float) -> void:
 		MonsterState.SEARCH:
 			search_for_player(delta)
 
+	update_animation()
+
 	move_and_slide()
 	check_if_stuck(delta)
 
@@ -153,6 +166,11 @@ func start_search() -> void:
 	search_timer = search_duration
 	search_target_position = last_seen_player_position
 
+	search_pause_timer = search_pause_duration
+
+	velocity.x = 0.0
+	velocity.z = 0.0
+
 	navigation_agent.target_position = search_target_position
 
 	print("Monster: PLAYER LOST - SEARCHING LAST KNOWN POSITION")
@@ -160,9 +178,19 @@ func start_search() -> void:
 
 
 func search_for_player(delta: float) -> void:
+	
+		# Berhenti sebentar sebelum mulai mencari posisi terakhir Player
+	if search_pause_timer > 0.0:
+		search_pause_timer -= delta
+
+		velocity.x = 0.0
+		velocity.z = 0.0
+		return
+
 	var distance_to_player := global_position.distance_to(
 		player.global_position
 	)
+	
 
 	if (
 		not is_player_hidden()
@@ -359,7 +387,7 @@ func catch_player() -> void:
 	print("Monster: PLAYER CAUGHT")
 
 	if player.has_method("die"):
-		player.die()
+		player.die(jumpscare_video)
 
 
 func is_player_hidden() -> bool:
@@ -367,3 +395,18 @@ func is_player_hidden() -> bool:
 		return false
 
 	return bool(player.get("is_hiding"))
+
+
+func update_animation() -> void:
+	var horizontal_speed := Vector2(
+		velocity.x,
+		velocity.z
+	).length()
+
+	var animation_name := "Idle"
+
+	if horizontal_speed > 0.1:
+		animation_name = "chasing"
+
+	if animation_player.current_animation != animation_name:
+		animation_player.play(animation_name)

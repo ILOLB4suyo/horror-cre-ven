@@ -68,6 +68,15 @@ func _ready() -> void:
 
 	navigation_agent.path_desired_distance = 0.5
 	navigation_agent.target_desired_distance = 0.8
+	
+	# Aktifkan penghindaran antar Monster dan Stalker
+	navigation_agent.avoidance_enabled = true
+	navigation_agent.radius = 0.8
+	navigation_agent.neighbor_distance = 5.0
+	navigation_agent.max_neighbors = 10
+	navigation_agent.time_horizon_agents = 2.0
+
+	navigation_agent.velocity_computed.connect(_on_velocity_computed)
 
 	last_stuck_check_position = global_position
 
@@ -288,6 +297,7 @@ func move_toward_target(speed: float, delta: float) -> void:
 	if navigation_agent.is_navigation_finished():
 		velocity.x = 0.0
 		velocity.z = 0.0
+		navigation_agent.velocity = Vector3.ZERO
 		return
 
 	var next_position := navigation_agent.get_next_path_position()
@@ -297,19 +307,29 @@ func move_toward_target(speed: float, delta: float) -> void:
 	if direction.length_squared() < 0.0001:
 		velocity.x = 0.0
 		velocity.z = 0.0
+		navigation_agent.velocity = Vector3.ZERO
 		return
 
 	direction = direction.normalized()
 
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	# Kecepatan yang diinginkan sebelum avoidance
+	var desired_velocity := direction * speed
+
+	# Minta NavigationAgent menghitung jalur aman
+	navigation_agent.velocity = desired_velocity
 
 	var target_angle := atan2(-direction.x, -direction.z)
+
 	rotation.y = lerp_angle(
 		rotation.y,
 		target_angle,
 		1.0 - exp(-rotation_speed * delta)
 	)
+
+
+func _on_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity.x = safe_velocity.x
+	velocity.z = safe_velocity.z
 
 
 func check_if_stuck(delta: float) -> void:

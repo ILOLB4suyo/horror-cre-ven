@@ -17,6 +17,8 @@ height = 0.06738281
 
 [node name="Player" type="CharacterBody3D" unique_id=1580578200 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0407872, 0)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_p0vlq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=946147127]

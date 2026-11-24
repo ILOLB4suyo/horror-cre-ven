@@ -2,30 +2,34 @@
 extends CanvasLayer
 
 @onready var pause_background = $PauseBg
-@onready var pause_menu = $PauseMenu
-@onready var continue_button = $PauseMenu/Continue
-@onready var exit_button = $PauseMenu/Exit
+@onready var pause_menu = $PauseBg/PauseMenu
+@onready var continue_button = $PauseBg/PauseMenu/Continue
+@onready var exit_button = $PauseBg/PauseMenu/Exit
 
 var is_paused = false
 
+
 func _ready():
+	# PauseLayer tetap berjalan ketika game di-pause
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	pause_background.z_index = 0
-	pause_menu.z_index = 10
-
+	# Sembunyikan menu saat gameplay dimulai
 	pause_background.hide()
 	pause_menu.hide()
 
+	# Hubungkan tombol
 	continue_button.pressed.connect(_on_continue_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
 
+	# Awal permainan, mouse terkunci
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") and not event.is_echo():
 		toggle_pause()
 		get_viewport().set_input_as_handled()
+
 
 func toggle_pause():
 	is_paused = !is_paused
@@ -38,9 +42,7 @@ func toggle_pause():
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	print("Mouse Mode: ", Input.mouse_mode)
-	print("Game Paused: ", get_tree().paused)
+
 
 func _on_continue_pressed():
 	is_paused = false
@@ -49,13 +51,13 @@ func _on_continue_pressed():
 	pause_background.hide()
 	pause_menu.hide()
 
-	await get_tree().process_frame
-	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	print("After continue: ", Input.mouse_mode)
+
 
 func _on_exit_pressed():
+	is_paused = false
 	get_tree().paused = false
+
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")

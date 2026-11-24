@@ -1,11 +1,13 @@
 
 extends Area3D
 
-@export_group("Ending UI")
-@export var fade_rect: ColorRect
-@export var ending_label: Label
-@export var ending_subtitle: Label
-@export var replay_button: Button
+@onready var fade_rect: ColorRect = $"../EndingScreen/FadeRect"
+
+@onready var ending_label: Label = $"../EndingScreen/FadeRect/CenterContainer/VBoxContainer/Label"
+
+@onready var ending_subtitle: Label = $"../EndingScreen/FadeRect/CenterContainer/VBoxContainer/Label2"
+
+@onready var replay_button: Button = $"../EndingScreen/FadeRect/CenterContainer/VBoxContainer/MainMenuButton"
 
 @export_group("Fade")
 @export var fade_duration: float = 2.0
@@ -14,24 +16,8 @@ var ending_started: bool = false
 
 
 func _ready() -> void:
-	if fade_rect == null:
-		push_error("EndingZone: FadeRect belum diatur.")
-		return
-	
 	fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_ignore_mouse_recursive(fade_rect) 
-	
-	if ending_label == null:
-		push_error("EndingZone: Ending Label belum diatur.")
-		return
-
-	if ending_subtitle == null:
-		push_error("EndingZone: Label2 belum diatur.")
-		return
-
-	if replay_button == null:
-		push_error("EndingZone: Replay Button belum diatur.")
-		return
+	_ignore_mouse_recursive(fade_rect)
 
 	body_entered.connect(_on_body_entered)
 	replay_button.pressed.connect(_on_replay_pressed)
@@ -41,6 +27,8 @@ func _ready() -> void:
 	ending_label.hide()
 	ending_subtitle.hide()
 	replay_button.hide()
+
+	print("ENDING ZONE READY")
 
 
 func _ignore_mouse_recursive(node: Node) -> void:
@@ -54,17 +42,26 @@ func _ignore_mouse_recursive(node: Node) -> void:
 		_ignore_mouse_recursive(child)
 
 func _on_body_entered(body: Node3D) -> void:
+	print("ENDING ZONE: BODY DETECTED: ", body.name)
+	print("BODY GROUPS: ", body.get_groups())
+
 	if ending_started:
+		print("ENDING SUDAH DIMULAI")
 		return
 
 	if not body.is_in_group("player"):
+		print("BODY BUKAN PLAYER!")
 		return
 
+	print("PLAYER BERHASIL TERDETEKSI")
+
 	if body.is_won or body.is_dead:
+		print("PLAYER SUDAH WON ATAU DEAD")
 		return
 
 	ending_started = true
 
+	print("MEMANGGIL COMPLETE ENDING")
 
 	body.complete_ending()
 
@@ -90,4 +87,7 @@ func play_ending() -> void:
 
 
 func _on_replay_pressed() -> void:
-	get_tree().reload_current_scene()
+	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")

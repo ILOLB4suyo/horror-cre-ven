@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Horror-CreVen"
-run/main_scene="uid://vtkk8wyualqd"
+run/main_scene="uid://cnrlqxbnwu6l6"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

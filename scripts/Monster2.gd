@@ -8,8 +8,8 @@ enum Monster2State {
 
 @export_group("Dynamic Follow Speed")
 @export var catch_up_start_distance: float = 6.0
-@export var catch_up_full_distance: float = 12.0
-@export var max_follow_speed: float = 6.0
+@export var catch_up_full_distance: float = 15.0
+@export var max_follow_speed: float = 9.0
 
 @export_group("Follow")
 @export var follow_delay: float = 3.0

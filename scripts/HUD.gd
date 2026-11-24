@@ -15,7 +15,7 @@ extends CanvasLayer
 @onready var death_overlay: Control = $DeathOverlay
 @onready var jumpscare_video: VideoStreamPlayer = $DeathOverlay/JumpscareVideo
 @onready var death_panel: Control = $DeathOverlay/DeathPanel
-@onready var retry_button: Button = $DeathOverlay/DeathPanel/CenterContainer/VBoxContainer/RetryButton
+@onready var retry_button: Button = $DeathOverlay/DeathPanel/CenterContainer/VBoxContainer/MainMenuButton
 
 @onready var jumpscare_audio: AudioStreamPlayer = $JumpscareAudio
 
@@ -83,14 +83,17 @@ func _on_jumpscare_finished() -> void:
 
 
 func _on_retry_pressed() -> void:
-	print("DEBUG: RETRY BUTTON PRESSED")
+	print("DEBUG: MAIN MENU BUTTON PRESSED")
 
 	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	var error := get_tree().reload_current_scene()
+	var error := get_tree().change_scene_to_file(
+        "res://scenes/MainMenu.tscn"
+	)
 
 	if error != OK:
-		push_error("HUD: Gagal reload scene. Error: %s" % error)
+		push_error("HUD: Gagal kembali ke Main Menu. Error: %s" % error)
 
 
 func _process(_delta: float) -> void:

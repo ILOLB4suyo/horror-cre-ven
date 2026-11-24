@@ -5,11 +5,16 @@
 [ext_resource type="Script" uid="uid://dac2u2inkmhvr" path="res://scripts/HUD.gd" id="2_rvslj"]
 [ext_resource type="Texture2D" uid="uid://ct4lpsk1r8mim" path="res://assets/ui/crouch.png" id="3_0bbpv"]
 [ext_resource type="VideoStream" uid="uid://cvu43oh41bdui" path="res://assets/Jumpscare/Monster.ogv" id="4_cvmbd"]
-[ext_resource type="Shader" uid="uid://pl7ucu6jtcs6" path="res://assets/Main.gdshader" id="4_lhr70"]
+[ext_resource type="Script" uid="uid://cp0sfxgk88pcq" path="res://scenes/pause_layer.gd" id="4_nfivy"]
 [ext_resource type="PackedScene" uid="uid://bogyf3kromreg" path="res://scenes/documents.tscn" id="4_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://cadhnayhsih7a" path="res://BuildingModel.glb" id="4_rarhs"]
 [ext_resource type="AudioStream" uid="uid://0ewqwvg28j46" path="res://assets/Jumpscare/jumpscare.wav" id="6_bb450"]
 [ext_resource type="PackedScene" uid="uid://c767wcffninoi" path="res://scenes/items.tscn" id="6_c01mt"]
+[ext_resource type="Shader" uid="uid://c3cubwbfpd2vs" path="res://scenes/Main.gdshader" id="5_1nqs0"]
+[ext_resource type="PackedScene" uid="uid://cm3oqgo643wpi" path="res://assets/3DBuilding/BuildingModelUpdated.glb" id="5_wp0k4"]
+[ext_resource type="PackedScene" uid="uid://c767wcffninoi" path="res://scenes/items.tscn" id="6_c01mt"]
+[ext_resource type="PackedScene" uid="uid://bun7vh6521kc6" path="res://scenes/LiftDoors.tscn" id="7_nxtc6"]
+[ext_resource type="PackedScene" uid="uid://ccb15538bgfiv" path="res://scenes/keycard.tscn" id="8_jlsqs"]
 [ext_resource type="PackedScene" uid="uid://cpbypv7vt5ku2" path="res://scenes/Monsters.tscn" id="12_bjd11"]
 [ext_resource type="PackedScene" uid="uid://b5c2wcrg71hg1" path="res://scenes/stalker.tscn" id="13_bb450"]
 [ext_resource type="PackedScene" uid="uid://usf2cn413f8t" path="res://scenes/locker.tscn" id="15_3p2gp"]
@@ -34,7 +39,7 @@ material = SubResource("StandardMaterial3D_rvslj")
 size = Vector3(12.816467, 0.47961426, 1.6673584)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rarhs"]
-size = Vector3(189.10776, 0.001, 145.65784)
+size = Vector3(184.2995, 0.48937988, 145.65784)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elqb8"]
 albedo_color = Color(0.5411765, 0.1254902, 0.1254902, 1)
@@ -205,17 +210,29 @@ border_color = Color(0.5689727, 0.5689728, 0.5689725, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bbpv"]
 bg_color = Color(0.4006977, 0.40069774, 0.40069756, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhr70"]
-shader = ExtResource("4_lhr70")
-shader_parameter/vignette_strength = 0.634000030115
-shader_parameter/vignette_softness = 0.8
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8d8pf"]
 bg_color = Color(0.6724459, 0.084774144, 9.62615e-08, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bb450"]
+shader = ExtResource("5_1nqs0")
+shader_parameter/blur_amount = 4.0
+
+[sub_resource type="SystemFont" id="SystemFont_g4v7s"]
+font_names = PackedStringArray("Josefin Slab")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57qmd"]
+
+[sub_resource type="SystemFont" id="SystemFont_yf5fn"]
+font_names = PackedStringArray("Josefin Slab")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d0u6y"]
+
+[sub_resource type="SystemFont" id="SystemFont_nfivy"]
+font_names = PackedStringArray("Josefin Slab")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8u5g"]
 albedo_color = Color(0, 0, 0, 1)
@@ -544,7 +561,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93252563, 0.26019287, 4.26
 mesh = SubResource("BoxMesh_8f85w")
 
 [node name="FloorCol31" type="CollisionShape3D" parent="Floor" unique_id=680621841]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.421143, 0.8640931, 8.549488)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.017014, 0.05046457, 8.549488)
 shape = SubResource("BoxShape3D_rarhs")
 debug_color = Color(0.97984916, 0, 0.38853702, 0.41960785)
 
@@ -831,30 +848,37 @@ shape = SubResource("BoxShape3D_v0vrg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3987417, -0.45878577, -23.691725)
 
 [node name="Player" parent="." unique_id=1580578200 instance=ExtResource("2_mwfav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.77923, 1.0484544, 44.535477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.77923, 1.782804, 44.535477)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=26680363]
 script = ExtResource("2_rvslj")
 
 [node name="StaminaUI" type="Control" parent="HUD" unique_id=449190986]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StaminaBar" type="ProgressBar" parent="HUD/StaminaUI" unique_id=375309862]
 layout_mode = 1
-offset_left = 324.0
-offset_top = 580.0
-offset_right = 832.0
-offset_bottom = 607.0
+offset_left = -223.0
+offset_top = 275.0
+offset_right = 285.0
+offset_bottom = 302.0
 theme_override_styles/background = SubResource("StyleBoxFlat_elqb8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0bbpv")
 value = 100.0
 show_percentage = false
 
 [node name="CrouchIndicator" type="TextureRect" parent="HUD" unique_id=2007530557]
-visible = false
 offset_left = 904.0
 offset_top = 197.0
 offset_right = 1104.0
@@ -933,7 +957,7 @@ offset_bottom = 436.0
 text = "ESC to close"
 
 [node name="Vignette" type="ColorRect" parent="HUD" unique_id=1121678431]
-material = SubResource("ShaderMaterial_lhr70")
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -942,7 +966,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="DeathOverlay" type="Control" parent="HUD" unique_id=240050342]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -960,7 +983,6 @@ grow_vertical = 2
 expand = true
 
 [node name="DeathPanel" type="Control" parent="HUD/DeathOverlay" unique_id=835050575]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1009,6 +1031,82 @@ text = "RETRY"
 [node name="JumpscareAudio" type="AudioStreamPlayer" parent="HUD" unique_id=1700816753]
 stream = ExtResource("6_bb450")
 volume_db = 24.0
+[node name="PauseLayer" type="CanvasLayer" parent="HUD" unique_id=119404379]
+script = ExtResource("4_nfivy")
+
+[node name="PauseBg" type="ColorRect" parent="HUD/PauseLayer" unique_id=1196250259]
+material = SubResource("ShaderMaterial_bb450")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="PauseMenu" type="Control" parent="HUD/PauseLayer" unique_id=255107469]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="HUD/PauseLayer/PauseMenu" unique_id=1315567272]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.630005
+offset_top = -29.875
+offset_right = 62.234985
+offset_bottom = 1.125
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(0.71129656, 0.71129656, 0.7112965, 1)
+theme_override_fonts/font = SubResource("SystemFont_g4v7s")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_57qmd")
+text = "Continue"
+
+[node name="Exit" type="Button" parent="HUD/PauseLayer/PauseMenu" unique_id=1349647399]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = 21.070007
+offset_right = 31.0
+offset_bottom = 71.07001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(0.785217, 0.7852172, 0.7852178, 1)
+theme_override_fonts/font = SubResource("SystemFont_yf5fn")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d0u6y")
+text = "Exit"
+
+[node name="Label" type="Label" parent="HUD/PauseLayer/PauseMenu" unique_id=1906242412]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -130.31
+offset_right = 90.0
+offset_bottom = -79.30997
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_nfivy")
+theme_override_font_sizes/font_size = 50
+text = "<Pause>"
 
 [node name="Documents" parent="." unique_id=1423803137 instance=ExtResource("4_q8u5g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.566902, 0.09277004, -28.028511)
@@ -1024,7 +1122,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3001618, -0.46279478, -10.
 visible = false
 
 [node name="items" parent="." unique_id=854294333 instance=ExtResource("6_c01mt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.49414, 0.8625702, 33.754154)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.051339, 0.1586141, -18.592457)
 
 [node name="KeyItem" parent="items" index="0" unique_id=869853859 node_paths=PackedStringArray("stalker_spawn_point", "stalker_patrol_points", "monster2_spawn_point")]
 item_id = "key_blue"
@@ -1033,32 +1131,49 @@ stalker_scene = ExtResource("13_bb450")
 stalker_spawn_point = NodePath("../../StalkerSpawnPoint")
 stalker_patrol_points = [NodePath("../../PatrolPoints/PatrolPoint5"), NodePath("../../PatrolPoints/PatrolPoint3"), NodePath("../../PatrolPoints/PatrolPoint1"), NodePath("../../PatrolPoints/PatrolPoint2"), NodePath("../../PatrolPoints/PatrolPoint4")]
 spawn_monster2_on_pickup = true
+[node name="KeyItem" parent="items" index="0" unique_id=869853859]
+item_id = "key_blue"
+
+[node name="LiftDoors" parent="." unique_id=168471199 instance=ExtResource("7_nxtc6")]
+transform = Transform3D(0.9999306, 0, 0.011767864, 0, 1, 0, -0.011767864, 0, 0.9999306, -1.1740087, -0.35082793, -29.605305)
+
+[node name="LiftDoor" parent="LiftDoors" index="0" unique_id=1553104441 node_paths=PackedStringArray("monster2_spawn_point")]
 monster2_scene = ExtResource("17_ft6cd")
 monster2_spawn_point = NodePath("../../Monster2SpawnPoint")
+
+[node name="Keycard" parent="." unique_id=475385980 instance=ExtResource("8_jlsqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2445326, -0.30914122, -25.523006)
+
+[node name="KeyCard" parent="Keycard" index="0" unique_id=945004753 node_paths=PackedStringArray("stalker_spawn_point", "stalker_patrol_points")]
+item_id = "lift"
+spawn_stalker_on_pickup = true
+stalker_scene = ExtResource("13_bb450")
+stalker_spawn_point = NodePath("../../StalkerSpawnPoint")
+stalker_patrol_points = [NodePath("../../PatrolPoints/PatrolPoint1"), NodePath("../../PatrolPoints/PatrolPoint2")]
 
 [node name="PatrolPoints" type="Node3D" parent="." unique_id=1523040316]
 
 [node name="PatrolPoint1" type="Marker3D" parent="PatrolPoints" unique_id=1894602956]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -111.50287, 0.2427448, -45.576466)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9306508, 0, -1.5275345)
 
 [node name="PatrolPoint2" type="Marker3D" parent="PatrolPoints" unique_id=2126549608]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.2151, 0, -41.35704)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.243932, 0, -22.05217)
 
 [node name="PatrolPoint3" type="Marker3D" parent="PatrolPoints" unique_id=1819110832]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.08725, 0.26515543, -20.485209)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.306946, 0, -6.047945)
 
 [node name="PatrolPoint4" type="Marker3D" parent="PatrolPoints" unique_id=379473657]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.40654, 0, 35.106293)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.578113, 0, -8.450036)
 
 [node name="PatrolPoint5" type="Marker3D" parent="PatrolPoints" unique_id=1619066796]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.05564, 0.37168944, 3.8490212)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.284655, 0, -12.1328945)
 
 [node name="Monster" parent="." unique_id=504227797 node_paths=PackedStringArray("patrol_points") instance=ExtResource("12_bjd11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.54755, 0.21765447, 60.743576)
 chase_speed = 3.5
 lose_target_range = 3.0
 catch_distance = 1.7
-patrol_points = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2"), NodePath("../PatrolPoints/PatrolPoint3"), NodePath("../PatrolPoints/PatrolPoint4"), NodePath("../PatrolPoints/PatrolPoint5")]
+patrol_points = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2"), NodePath("../PatrolPoints/PatrolPoint3"), NodePath("../PatrolPoints/PatrolPoint4")]
 jumpscare_video = ExtResource("4_cvmbd")
 
 [node name="Skeleton3D" parent="Monster/zombies/Armature" parent_id_path=PackedInt32Array(504227797, 443985376, 488203201) index="0" unique_id=1665245879]
@@ -1138,10 +1253,10 @@ bones/19/rotation = Quaternion(-0.011929106, 0.021663358, 0.69078887, 0.72263354
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.24074, 0.9776536, 35.304146)
 
 [node name="StalkerSpawnPoint" type="Marker3D" parent="." unique_id=1838124342]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.82261, 0.7929839, 5.2825875)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0913577, 0.06354177, -10.303127)
 
-[node name="doors_utama" parent="." unique_id=1329436505 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -131.09286, 0.6685306, 32.69507)
+[node name="doors" parent="." unique_id=1329436505 instance=ExtResource("16_cvmbd")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.2415853, -0.09819996, -24.215742)
 
 [node name="Door" parent="doors_utama" index="0" unique_id=1578741921]
 required_item_id = "BUTTON"
@@ -1161,116 +1276,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.23888, 0.6685306, 10.7383
 [node name="Door" parent="doors_utama2" index="0" unique_id=1578741921]
 required_item_id = "key_blue"
 
-[node name="Doors" parent="doors_utama2/Door" index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_2" parent="." unique_id=1779514634 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136.20924, 0.6685306, 20.039457)
-
-[node name="Doors" parent="doors_2/Door" parent_id_path=PackedInt32Array(1779514634, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_3" parent="." unique_id=1133373879 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -116.8145, 0.6685306, 19.04522)
-
-[node name="Doors" parent="doors_3/Door" parent_id_path=PackedInt32Array(1133373879, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_14" parent="." unique_id=242061473 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -124.64793, 0.6685306, -8.530119)
-
-[node name="Doors" parent="doors_14/Door" parent_id_path=PackedInt32Array(242061473, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_16" parent="." unique_id=1226049553 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -104.79997, 0.6685306, -8.992823)
-
-[node name="Doors" parent="doors_16/Door" parent_id_path=PackedInt32Array(1226049553, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_17" parent="." unique_id=1082902118 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -104.79997, 0.6685306, -38.53206)
-
-[node name="Doors" parent="doors_17/Door" parent_id_path=PackedInt32Array(1082902118, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_18" parent="." unique_id=1012370763 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.149, 0.6685306, -35.898396)
-
-[node name="Doors" parent="doors_18/Door" parent_id_path=PackedInt32Array(1012370763, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_20" parent="." unique_id=561384958 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.87344, 0.6685306, -26.009464)
-
-[node name="Doors" parent="doors_20/Door" parent_id_path=PackedInt32Array(561384958, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_15" parent="." unique_id=1100552532 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.24231, 0.6685306, -25.80305)
-
-[node name="Doors" parent="doors_15/Door" parent_id_path=PackedInt32Array(1100552532, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_4" parent="." unique_id=902818796 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -116.8145, 0.6685306, 29.35614)
-
-[node name="Doors" parent="doors_4/Door" parent_id_path=PackedInt32Array(902818796, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_5" parent="." unique_id=1150154870 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.23651, 0.6685306, 24.05352)
-
-[node name="Doors" parent="doors_5/Door" parent_id_path=PackedInt32Array(1150154870, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_6" parent="." unique_id=23509784 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.919, 0.6685306, 32.125862)
-
-[node name="Doors" parent="doors_6/Door" parent_id_path=PackedInt32Array(23509784, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_7" parent="." unique_id=364593936 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -106.765335, 0.6685306, 29.65675)
-
-[node name="Doors" parent="doors_7/Door" parent_id_path=PackedInt32Array(364593936, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_8" parent="." unique_id=919943629 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -106.94964, 0.6685306, 40.78055)
-
-[node name="Doors" parent="doors_8/Door" parent_id_path=PackedInt32Array(919943629, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_9" parent="." unique_id=479535391 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.21432, 0.6685306, 46.499935)
-
-[node name="Doors" parent="doors_9/Door" parent_id_path=PackedInt32Array(479535391, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_10" parent="." unique_id=1145930908 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.13946, 0.6685306, 39.855915)
-
-[node name="Doors" parent="doors_10/Door" parent_id_path=PackedInt32Array(1145930908, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_11" parent="." unique_id=601218670 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -66.80845, 0.6685306, 29.63721)
-
-[node name="Doors" parent="doors_11/Door" parent_id_path=PackedInt32Array(601218670, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_12" parent="." unique_id=1024506930 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -66.78188, 0.6685306, 9.972053)
-
-[node name="Doors" parent="doors_12/Door" parent_id_path=PackedInt32Array(1024506930, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
-
-[node name="doors_13" parent="." unique_id=1552849473 instance=ExtResource("16_cvmbd")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -74.82659, 0.6685306, -8.888306)
-
-[node name="Doors" parent="doors_13/Door" parent_id_path=PackedInt32Array(1552849473, 1578741921) index="0" unique_id=911487938]
-transform = Transform3D(-6.316296e-08, 0, 1.445, 0, 1.445, 0, -1.445, 0, -6.316296e-08, 0.7533493, 1.3540219, 0)
+[node name="Doors" parent="doors/Door" index="0" unique_id=911487938]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0.7533474, 1.0325027, 0)
 
 [node name="Locker" parent="." unique_id=1344819323 node_paths=PackedStringArray("hide_position", "exit_position") instance=ExtResource("15_3p2gp")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -102.88485, 13.903948, 39.17928)
@@ -2030,3 +2037,12 @@ text = "REPLAY"
 [editable path="Map3"]
 [editable path="ControlButton"]
 [editable path="ControlButton/Keycard"]
+[editable path="LiftDoors"]
+[editable path="Keycard"]
+[editable path="Monster"]
+[editable path="Monster/zombies"]
+[editable path="doors"]
+[editable path="doors2"]
+[editable path="doors3"]
+[editable path="doors4"]
+[editable path="Locker"]

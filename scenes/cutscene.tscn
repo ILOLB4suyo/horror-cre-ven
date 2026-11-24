@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bo1k7uqa33vyx"]
+
+[ext_resource type="Script" uid="uid://by01yduiso5aa" path="res://scenes/cutscene.gd" id="1_a320b"]
+[ext_resource type="VideoStream" uid="uid://cb2sxl8nhd6ut" path="res://assets/CutsceneAwal/CutsceneAwal.ogv" id="2_0sipp"]
+
+[node name="Cutscene" type="Control" unique_id=1934500997]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a320b")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=937548007]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.9999361
+offset_top = 4.4822693e-05
+offset_right = 766.0001
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+stream = ExtResource("2_0sipp")
+volume_db = -80.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1189799906]
+
+[node name="Fade" type="ColorRect" parent="CanvasLayer" unique_id=1422428171]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)

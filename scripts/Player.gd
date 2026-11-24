@@ -98,15 +98,23 @@ func has_item(item_id: String) -> bool:
 	return owned_items.has(item_id)
 
 func _unhandled_input(event: InputEvent) -> void:
-	
-	if event.is_action_pressed("ui_cancel"):
 
+	if event is InputEventMouseMotion:
+		print(
+			"MOUSE INPUT | Reading: ", is_reading,
+			" | Hiding: ", is_hiding,
+			" | Paused: ", get_tree().paused
+		)
+
+	if event.is_action_pressed("ui_cancel"):
 		if is_reading:
 			close_document()
 			return
 
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		return
+		
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		print("PLAYER INPUT: Mouse terdeteksi")
 
 	if is_hiding:
 		if event.is_action_pressed("interact"):

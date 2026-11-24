@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://cnrlqxbnwu6l6"]
+
+[ext_resource type="Script" uid="uid://cocvjfyqce2an" path="res://scenes/main_menu.gd" id="1_0ykhv"]
+[ext_resource type="PackedScene" uid="uid://cgq1nhfcsj4pl" path="res://Map.glb" id="1_yqorp"]
+[ext_resource type="AudioStream" uid="uid://cts8nb5a3nji3" path="res://assets/Loading_.mp3" id="3_2wh52"]
+
+[sub_resource type="Environment" id="Environment_yqorp"]
+background_energy_multiplier = 0.1
+
+[sub_resource type="SystemFont" id="SystemFont_yf5fn"]
+font_names = PackedStringArray("Josefin Slab")
+
+[sub_resource type="SystemFont" id="SystemFont_57qmd"]
+font_names = PackedStringArray("Josefin Slab")
+
+[sub_resource type="SystemFont" id="SystemFont_3gngh"]
+font_names = PackedStringArray("Josefin Slab")
+
+[node name="Node3D" type="Node3D" unique_id=2095832110]
+script = ExtResource("1_0ykhv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2127862959]
+environment = SubResource("Environment_yqorp")
+
+[node name="Map3" parent="WorldEnvironment" unique_id=607800055 groups=["navigation_mesh"] instance=ExtResource("1_yqorp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.729267, -0.0026402473, 12.597399)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment" unique_id=858065347]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, -58.517376, 9.765553, 5.3390083)
+light_energy = 0.73
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D" unique_id=183169066]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, 25.532005, -1.7363911, -0.36289787)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=1381366166]
+transform = Transform3D(1, 0, 0, 0, -0.0007157767, 0.9999998, 0, -0.9999998, -0.0007157767, -11.834358, -0.21085262, 1.6666937)
+omni_range = 13.404372
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=1945348871]
+transform = Transform3D(1, 0, 0, 0, -0.0007157775, 0.99999976, 0, -0.99999976, -0.0007157775, -16.72554, -0.25131226, 29.92965)
+omni_range = 13.404372
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=505523272]
+transform = Transform3D(1, 0, 0, 0, -0.00071577774, 0.99999976, 0, -0.99999976, -0.00071577774, 3.232933, -0.25131226, 29.92965)
+omni_range = 13.404372
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=2013792901]
+transform = Transform3D(1, 0, 0, 0, -0.00071577856, 0.9999998, 0, -0.9999998, -0.00071577856, 29.858353, -0.27195072, 44.34601)
+omni_range = 13.404372
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=588410782]
+transform = Transform3D(1, 0, 0, 0, -0.0007157788, 0.9999998, 0, -0.9999998, -0.0007157788, 29.858353, -0.21947479, 7.6898403)
+omni_range = 13.404372
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=101752897]
+transform = Transform3D(1, 0, 0, 0, -0.0007157794, 0.99999976, 0, -0.99999976, -0.0007157794, 42.886482, -0.18977356, -13.058241)
+omni_range = 13.404372
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=1751199868]
+transform = Transform3D(1, 0, 0, 0, -0.0007157797, 0.9999998, 0, -0.9999998, -0.0007157797, 42.886482, -0.16865253, -27.811884)
+omni_range = 13.404372
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=1582121706]
+transform = Transform3D(1, 0, 0, 0, -0.00071577996, 0.9999998, 0, -0.9999998, -0.00071577996, 4.089348, -0.16865253, -27.811884)
+omni_range = 13.404372
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=485107461]
+transform = Transform3D(1, 0, 0, 0, -0.0007157802, 0.9999998, 0, -0.9999998, -0.0007157802, 4.089348, -0.14818668, -42.10799)
+omni_range = 13.404372
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=825852438]
+transform = Transform3D(1, 0, 0, 0, -0.0007157781, 0.9999998, 0, -0.9999998, -0.0007157781, -0.6738968, -0.28098202, 50.654808)
+omni_range = 13.404372
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D" unique_id=700941962]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, -1.1949158, -21.28536, -0.33118343)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D2" unique_id=840720904]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, 25.532005, -1.7363911, -0.36289692)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D2/OmniLight3D" unique_id=2086246798]
+transform = Transform3D(1, 0, 0, 0, -0.0007157767, 0.9999998, 0, -0.9999998, -0.0007157767, -11.834358, -0.21085262, 1.6666937)
+omni_range = 13.404372
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D" unique_id=1248518699]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, -1.1949158, -38.06371, -0.34319305)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D3" unique_id=556668554]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, 25.532005, -1.7363911, -0.36289692)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D3/OmniLight3D" unique_id=1821317422]
+transform = Transform3D(1, 0, 0, 0, -0.0007157767, 0.9999998, 0, -0.9999998, -0.0007157767, -11.834358, -0.21085262, 1.6666937)
+omni_range = 13.404372
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=657367049]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2120731296]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=2000513526]
+transform = Transform3D(0.7264879, -0.17028414, -0.66574675, 0.05371843, 0.9799191, -0.19202329, 0.68507653, 0.103739716, 0.7210467, -38.072945, 1.0747013, 14.502369)
+
+[node name="Start" type="Button" parent="." unique_id=1660972965]
+offset_left = 107.0
+offset_top = 401.0
+offset_right = 333.0
+offset_bottom = 464.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.7146289, 0.714629, 0.7146298, 1)
+theme_override_fonts/font = SubResource("SystemFont_yf5fn")
+theme_override_font_sizes/font_size = 40
+text = "Start Game"
+
+[node name="Exit" type="Button" parent="." unique_id=367633595]
+offset_left = 109.0
+offset_top = 478.0
+offset_right = 205.0
+offset_bottom = 541.0
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(0.67481434, 0.6748145, 0.6748154, 1)
+theme_override_fonts/font = SubResource("SystemFont_57qmd")
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[node name="Label" type="Label" parent="." unique_id=630643884]
+offset_left = 90.0
+offset_top = 75.0
+offset_right = 441.0
+offset_bottom = 175.0
+theme_override_fonts/font = SubResource("SystemFont_3gngh")
+theme_override_font_sizes/font_size = 99
+text = "Carmine"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1464761301]
+stream = ExtResource("3_2wh52")
+autoplay = true
+parameters/looping = true

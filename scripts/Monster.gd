@@ -387,6 +387,10 @@ func has_line_of_sight() -> bool:
 
 
 func catch_player() -> void:
+	
+	if player.is_won or player.is_dead:
+		return
+	
 	if current_state == MonsterState.DEAD:
 		return
 

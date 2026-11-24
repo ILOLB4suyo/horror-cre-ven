@@ -12,9 +12,9 @@ extends CharacterBody3D
 #@export var stamina_regen_walk: float = 5.0
 @export var stamina_recovery_threshold: float = 5.0
 	
-@export var stamina_drain: float = 10.0
-@export var stamina_regen_idle: float = 55.0
-@export var stamina_regen_walk: float = 55.0
+@export var stamina_drain: float = 15.0
+@export var stamina_regen_idle: float = 25.0
+@export var stamina_regen_walk: float = 25.0
 
 @export var walk_bob_frequency: float = 8.0
 @export var walk_bob_amplitude: float = 0.025
@@ -33,7 +33,7 @@ extends CharacterBody3D
 
 @export var interaction_distance: float = 3.0
 
-
+var is_won: bool = false
 
 var is_hiding: bool = false
 var current_locker: Interactable = null
@@ -181,6 +181,18 @@ func _physics_process(delta: float) -> void:
 
 	if is_dead:
 		velocity = Vector3.ZERO
+		move_and_slide()
+		return
+	
+	if is_won:
+		velocity.x = 0.0
+		velocity.z = 0.0
+
+		if not is_on_floor():
+			velocity.y -= GRAVITY * delta
+		else:
+			velocity.y = 0.0
+
 		move_and_slide()
 		return
 	
@@ -346,7 +358,10 @@ func _physics_process(delta: float) -> void:
 
 
 func die(jumpscare_video: VideoStream) -> void:
-	if is_dead:
+	print("DEBUG: PLAYER DIE DIPANGGIL")
+
+	if is_dead or is_won:
+		print("DEBUG: Player sudah mati atau menang")
 		return
 
 	is_dead = true
@@ -359,6 +374,7 @@ func die(jumpscare_video: VideoStream) -> void:
 	hud.hide_interaction_prompt()
 
 	print("PLAYER STATUS: DEAD")
+	print("DEBUG: Memanggil HUD play_death_sequence")
 
 	hud.play_death_sequence(jumpscare_video)
 
@@ -574,7 +590,7 @@ func hide_locker_exit_prompt() -> void:
 
 
 func begin_death() -> void:
-	if is_dead:
+	if is_won or is_dead:
 		return
 
 	is_dead = true
@@ -638,3 +654,21 @@ func update_peek_transparency(delta: float) -> void:
 		target_transparency,
 		transparency_speed * delta
 	)
+
+
+func complete_ending() -> void:
+	if is_won or is_dead:
+		return
+
+	is_won = true
+	velocity = Vector3.ZERO
+
+	interaction_target = null
+	interaction_progress = 0.0
+	peek_direction = 0
+
+	hud.hide_interaction_prompt()
+
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	print("PLAYER STATUS: WON")

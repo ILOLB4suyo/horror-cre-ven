@@ -17,15 +17,29 @@ extends CanvasLayer
 @onready var death_panel: Control = $DeathOverlay/DeathPanel
 @onready var retry_button: Button = $DeathOverlay/DeathPanel/CenterContainer/VBoxContainer/RetryButton
 
-
+@onready var jumpscare_audio: AudioStreamPlayer = $JumpscareAudio
 
 func _ready() -> void:
 	death_overlay.visible = false
 	death_panel.visible = false
 
+	death_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	death_panel.mouse_filter = Control.MOUSE_FILTER_PASS
+	jumpscare_video.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	retry_button.mouse_filter = Control.MOUSE_FILTER_STOP
+	retry_button.disabled = false
+	retry_button.focus_mode = Control.FOCUS_ALL
+
 	jumpscare_video.finished.connect(_on_jumpscare_finished)
 	retry_button.pressed.connect(_on_retry_pressed)
-	
+
+	retry_button.mouse_entered.connect(
+		func():
+			print("DEBUG: MOUSE ENTERED RETRY BUTTON")
+	)
+
+	print("DEBUG: HUD READY - RETRY SIGNAL CONNECTED")
 
 
 
@@ -37,6 +51,11 @@ func play_death_sequence(video: VideoStream) -> void:
 	death_overlay.visible = true
 	death_panel.visible = false
 
+	# Putar audio jumpscare
+	jumpscare_audio.stop()
+	jumpscare_audio.play()
+
+	# Putar video jumpscare
 	jumpscare_video.stream = video
 	jumpscare_video.visible = true
 	jumpscare_video.play()
@@ -46,18 +65,38 @@ func play_death_sequence(video: VideoStream) -> void:
 
 func _on_jumpscare_finished() -> void:
 	jumpscare_video.stop()
-	jumpscare_video.visible = false
+	jumpscare_video.hide()
 
-	death_panel.visible = true
+	death_panel.show()
+
+	retry_button.show()
+	retry_button.disabled = false
+	retry_button.mouse_filter = Control.MOUSE_FILTER_STOP
 
 	print("JUMPSCARE FINISHED - SHOW DEATH SCREEN")
+	print("Retry visible: ", retry_button.visible)
+	print("Retry global position: ", retry_button.global_position)
+	print("Retry size: ", retry_button.size)
+	print("Retry global rect: ", retry_button.get_global_rect())
+
+	retry_button.grab_focus()
 
 
 func _on_retry_pressed() -> void:
-	get_tree().reload_current_scene()
+	print("DEBUG: RETRY BUTTON PRESSED")
+
+	get_tree().paused = false
+
+	var error := get_tree().reload_current_scene()
+
+	if error != OK:
+		push_error("HUD: Gagal reload scene. Error: %s" % error)
 
 
 func _process(_delta: float) -> void:
+	if not is_instance_valid(player):
+		return
+
 	stamina_bar.max_value = player.max_stamina
 	stamina_bar.value = player.stamina
 

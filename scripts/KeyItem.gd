@@ -12,6 +12,11 @@ extends Interactable
 @export var stalker_spawn_point: Marker3D
 @export var stalker_patrol_points: Array[Node3D] = []
 
+@export_group("Monster2 Spawn")
+@export var spawn_monster2_on_pickup: bool = false
+@export var monster2_scene: PackedScene
+@export var monster2_spawn_point: Marker3D
+
 
 func _ready() -> void:
 	randomize()
@@ -47,6 +52,9 @@ func interact(player) -> void:
 	if spawn_stalker_on_pickup:
 		spawn_stalker()
 
+	if spawn_monster2_on_pickup:
+		spawn_monster2()
+
 	queue_free()
 
 
@@ -61,9 +69,31 @@ func spawn_stalker() -> void:
 
 	var stalker = stalker_scene.instantiate()
 
+	print("DEBUG: Scene yang di-spawn = ", stalker_scene.resource_path)
+	print("DEBUG: Script yang digunakan = ", stalker.get_script().resource_path)
+
 	get_tree().current_scene.add_child(stalker)
 
 	stalker.global_position = stalker_spawn_point.global_position
 	stalker.patrol_points = stalker_patrol_points
 
 	print("KeyItem: STALKER SPAWNED")
+
+
+
+func spawn_monster2() -> void:
+	if monster2_scene == null:
+		push_error("KeyItem: Monster2 Scene belum diatur.")
+		return
+
+	if monster2_spawn_point == null:
+		push_error("KeyItem: Monster2 Spawn Point belum diatur.")
+		return
+
+	var monster2 = monster2_scene.instantiate()
+
+	get_tree().current_scene.add_child(monster2)
+
+	monster2.global_position = monster2_spawn_point.global_position
+
+	print("KeyItem: MONSTER2 SPAWNED")

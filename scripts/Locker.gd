@@ -38,7 +38,6 @@ func get_interaction_text(player) -> String:
 	return "HIDE - HOLD F"
 
 
-# Dipanggil saat Player mulai menahan F
 func interaction_started(player) -> void:
 	if current_state != LockerState.AVAILABLE:
 		return
@@ -48,21 +47,20 @@ func interaction_started(player) -> void:
 
 	opening_for_interaction = true
 
-	# Jika pintu sudah terbuka, tidak perlu memainkan Open lagi
+
 	if not door_is_open:
 		animation_player.speed_scale = 1.0
 		animation_player.play("Open")
 
 
-# Dipanggil saat Player melepas F sebelum progress penuh
+
 func interaction_cancelled(player) -> void:
 	if not opening_for_interaction:
 		return
 
 	opening_for_interaction = false
 
-	# Jika pintu sudah terbuka sebelum interaksi,
-	# biarkan pintu tetap terbuka
+
 	if door_is_open:
 		return
 
@@ -76,15 +74,15 @@ func interaction_cancelled(player) -> void:
 func close_door_from_current_position() -> void:
 	var current_position := animation_player.current_animation_position
 
-	# Jika pintu sudah tertutup
+
 	if current_position <= 0.001:
 		door_is_open = false
 		return
 
-	# Putar animasi mundur dari akhir
+
 	animation_player.play("Open", -1.0, -1.0, true)
 
-	# Kembalikan ke posisi terakhir sebelum dibalik
+
 	animation_player.seek(current_position, true)
 
 	await animation_player.animation_finished
@@ -93,7 +91,7 @@ func close_door_from_current_position() -> void:
 	door_is_open = false
 
 
-# Dipanggil saat progress interaksi mencapai 100%
+
 func interact(player: Node) -> void:
 	if current_state != LockerState.AVAILABLE:
 		return
@@ -124,7 +122,7 @@ func interact(player: Node) -> void:
 		player.show_locker_exit_prompt()
 
 
-# Dipanggil saat Player menekan F ketika sedang bersembunyi
+
 func request_exit(player: Node) -> void:
 	if current_state != LockerState.HIDDEN:
 		return
@@ -134,7 +132,7 @@ func request_exit(player: Node) -> void:
 
 	player.hide_locker_exit_prompt()
 
-	# Buka pintu
+
 	animation_player.speed_scale = 1.0
 	animation_player.play("Open")
 
@@ -155,7 +153,7 @@ func setup_door_materials() -> void:
 		push_error("Locker: Door Mesh belum diatur.")
 		return
 
-	# Ambil material dari Geometry > Material Override
+
 	var original_material = door_mesh.material_override
 
 	if original_material == null:
@@ -166,12 +164,12 @@ func setup_door_materials() -> void:
 		push_error("Locker: Material Door bukan BaseMaterial3D.")
 		return
 
-	# Duplikasi agar tidak mengubah material aset asli
+
 	door_material = original_material.duplicate() as BaseMaterial3D
 
 	door_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
-	# Pasang material baru ke Door
+
 	door_mesh.material_override = door_material
 
 	print("Door Material Override berhasil disiapkan.")

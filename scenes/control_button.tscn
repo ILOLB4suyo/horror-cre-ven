@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cthvrxkeqdos7"]
+
+[ext_resource type="PackedScene" uid="uid://cldmhwui5sc04" path="res://ControlButton.glb" id="1_15yp8"]
+[ext_resource type="PackedScene" uid="uid://ccb15538bgfiv" path="res://scenes/keycard.tscn" id="2_vwfvl"]
+
+[node name="ControlButton" type="Node3D" unique_id=1569522268]
+
+[node name="ControlButton" parent="." unique_id=1196135641 instance=ExtResource("1_15yp8")]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0)
+
+[node name="Keycard" parent="." unique_id=475385980 instance=ExtResource("2_vwfvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.059402674, 0, 0.09130651)
+visible = false
+
+[editable path="Keycard"]

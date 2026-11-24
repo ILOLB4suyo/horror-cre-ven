@@ -9,6 +9,8 @@ radius = 0.5273104
 
 [node name="Stalker" type="CharacterBody3D" unique_id=145913987]
 script = ExtResource("1_5g5gq")
+chase_speed = 3.5
+catch_distance = 2.2
 jumpscare_video = ExtResource("2_2gtbd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=564808363]

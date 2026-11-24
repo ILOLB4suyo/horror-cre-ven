@@ -233,7 +233,10 @@ func follow_delayed_position(delta: float) -> void:
 func catch_player() -> void:
 	if current_state == Monster2State.CAUGHT:
 		return
-
+	
+	if player.is_won:
+		return
+	
 	current_state = Monster2State.CAUGHT
 	velocity = Vector3.ZERO
 

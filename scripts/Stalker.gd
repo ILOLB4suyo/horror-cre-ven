@@ -10,7 +10,7 @@ enum MonsterState {
 
 @export_group("Movement")
 @export var patrol_speed: float = 2.0
-@export var chase_speed: float = 4.5
+@export var chase_speed: float = 2.5
 @export var gravity: float = 9.8
 @export var rotation_speed: float = 5.0
 
@@ -71,7 +71,7 @@ func _ready() -> void:
 
 	last_stuck_check_position = global_position
 
-	# Tunggu navigation map siap.
+
 	await get_tree().physics_frame
 
 	if patrol_points.size() > 0:
@@ -86,6 +86,10 @@ func _physics_process(delta: float) -> void:
 	if player == null or not is_instance_valid(player):
 		velocity = Vector3.ZERO
 		move_and_slide()
+		return
+	
+	if player.is_won or player.is_dead:
+		velocity = Vector3.ZERO
 		return
 
 	if not is_on_floor():
@@ -125,6 +129,11 @@ func update_state() -> void:
 	var distance_to_player := global_position.distance_to(
 		player.global_position
 	)
+
+	# Periksa jarak tangkap sebelum memproses state lainnya.
+	if distance_to_player <= catch_distance:
+		catch_player()
+		return
 
 	var can_see_player := (
 		distance_to_player <= detection_range
@@ -179,7 +188,7 @@ func start_search() -> void:
 
 func search_for_player(delta: float) -> void:
 	
-		# Berhenti sebentar sebelum mulai mencari posisi terakhir Player
+
 	if search_pause_timer > 0.0:
 		search_pause_timer -= delta
 
@@ -358,11 +367,11 @@ func has_line_of_sight() -> bool:
 
 	var result := get_world_3d().direct_space_state.intersect_ray(query)
 
-	# Tidak ada objek yang menghalangi pandangan.
+
 	if result.is_empty():
 		return true
 
-	# Raycast mengenai player atau node anak milik player.
+
 	var collider = result.get("collider")
 
 	if collider == player:
@@ -375,18 +384,32 @@ func has_line_of_sight() -> bool:
 
 
 func catch_player() -> void:
+	print("DEBUG: catch_player() DIPANGGIL")
+
 	if current_state == MonsterState.DEAD:
+		print("DEBUG: Stalker sudah DEAD")
 		return
 
 	if is_player_hidden():
+		print("DEBUG: Player sedang bersembunyi")
+		return
+
+	if player.is_won or player.is_dead:
+		print("DEBUG: Player sudah WON atau DEAD")
 		return
 
 	current_state = MonsterState.DEAD
 	velocity = Vector3.ZERO
 
-	print("Monster: PLAYER CAUGHT")
+	print("DEBUG: STALKER BERHASIL MENANGKAP PLAYER")
+	print("DEBUG: Video jumpscare = ", jumpscare_video)
+
+	if jumpscare_video == null:
+		push_error("Stalker: Jumpscare Video belum diatur di Inspector!")
+		return
 
 	if player.has_method("die"):
+		print("DEBUG: Memanggil fungsi die() Player")
 		player.die(jumpscare_video)
 
 
@@ -404,11 +427,11 @@ func update_animation() -> void:
 	).length()
 
 	if horizontal_speed > 0.1:
-		# Mulai animasi Chase jika belum dimainkan
+
 		if animation_player.current_animation != "Chase":
 			animation_player.play("Chase", -1, 1.0)
 
-		# Batasi animasi hanya sampai 1.7 detik
+
 		elif animation_player.current_animation_position >= 1.7:
 			animation_player.seek(0.0, true)
 

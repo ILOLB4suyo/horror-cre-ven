@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cpngwvva203k5" path="res://assets/characters/carnation/Carmine_Headless.glb" id="2_v6fml"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8f85w"]
-radius = 0.3876953
+radius = 0.48339844
 height = 1.980957
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnr1l"]

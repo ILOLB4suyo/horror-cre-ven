@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dwrxn34pagh1f" path="res://assets/characters/ZombiesModel.glb" id="2_67arq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8f85w"]
+height = 2.9658203
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ceqr"]
 albedo_color = Color(0, 0, 0, 1)
@@ -15,7 +16,7 @@ material = SubResource("StandardMaterial3D_0ceqr")
 script = ExtResource("1_2732j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1440647085]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0079575, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4908676, 0)
 shape = SubResource("CapsuleShape3D_8f85w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1367468931]
@@ -26,7 +27,7 @@ mesh = SubResource("CapsuleMesh_8d8pf")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=602967139]
 
 [node name="zombies" parent="." unique_id=443985376 instance=ExtResource("2_67arq")]
-transform = Transform3D(-0.98480767, 0, 0.17364828, 0, 1, 0, -0.17364828, 0, -0.98480767, 0, 0, 0)
+transform = Transform3D(-1.3344145, 0, 0.23529345, 0, 1.355, 0, -0.23529345, 0, -1.3344145, 0, 0, 0)
 
 [node name="Skeleton3D" parent="zombies/Armature" parent_id_path=PackedInt32Array(443985376, 488203201) index="0" unique_id=1665245879]
 bones/0/rotation = Quaternion(-0.008670434, -0.00027033043, 0.031162104, 0.99947673)

@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cpngwvva203k5" path="res://assets/characters/carnation/Carmine_Headless.glb" id="2_v6fml"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8f85w"]
-height = 1.5556641
+radius = 0.3876953
+height = 1.980957
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnr1l"]
 albedo_color = Color(0.22352941, 0.23529412, 0.25490198, 1)
@@ -15,14 +16,15 @@ radius = 0.033691406
 height = 0.06738281
 
 [node name="Player" type="CharacterBody3D" unique_id=1580578200 groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0407872, 0)
 script = ExtResource("1_p0vlq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=946147127]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22216797, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.009521484, 0)
 shape = SubResource("CapsuleShape3D_8f85w")
 
 [node name="Head" type="Node3D" parent="." unique_id=1152135117]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5333302, -0.19377455)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.931201, -0.19377455)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=134417614]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024265885, 0.117088966)
@@ -33,7 +35,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_8f85w")
 
 [node name="Carmine_Headless" parent="." unique_id=1372846856 instance=ExtResource("2_v6fml")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.01992625, -0.99020195, -0.04972911)
+transform = Transform3D(-1.305, 0, 1.9704952e-07, 0, 1.305, 0, -1.9704952e-07, 0, -1.305, 0.01992625, -0.99020195, -0.04972911)
 
 [node name="Skeleton3D" parent="Carmine_Headless/Armature" parent_id_path=PackedInt32Array(1372846856, 302503176) index="0" unique_id=1189889663]
 bones/0/rotation = Quaternion(0.028483743, 0, 0, 0.9995943)

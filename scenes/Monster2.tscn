@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://da4wj64y0yscv"]
 
 [ext_resource type="Script" uid="uid://cr0o4alceg8s" path="res://scripts/Monster2.gd" id="1_iom3g"]
+[ext_resource type="PackedScene" uid="uid://ip204t3hxc0b" path="res://assets/characters/MiniCreature2.glb" id="2_wtc2v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a5wee"]
 height = 1.2392578
@@ -17,9 +18,15 @@ shape = SubResource("CapsuleShape3D_a5wee")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=946972702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40478516, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_8f85w")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=447351389]
 path_desired_distance = 0.5
 target_desired_distance = 0.8
 navigation_layers = 255
+
+[node name="MiniCreature2" parent="." unique_id=2053069537 instance=ExtResource("2_wtc2v")]
+transform = Transform3D(-2.425982e-08, 0, 0.555, 0, 0.555, 0, -0.555, 0, -2.425982e-08, 0.008345604, -0.4342044, -0.00021070242)
+
+[editable path="MiniCreature2"]

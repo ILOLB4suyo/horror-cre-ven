@@ -230,7 +230,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0058642626, 0.0042374134, -
 navigation_mesh = SubResource("NavigationMesh_8f85w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=215700592]
-transform = Transform3D(0.9713254, 0.22144857, -0.08653068, 0.07789215, 0.04746623, 0.99583125, 0.22463268, -0.9740162, 0.028856048, 0, 16.749214, 0)
+transform = Transform3D(0.9713254, 0.22144857, -0.08653068, 0.07789215, 0.04746623, 0.99583125, 0.22463268, -0.9740162, 0.028856048, 0, 23.032825, 0)
 light_energy = 0.748
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=375513422 groups=["navigation_mesh"]]
@@ -528,7 +528,7 @@ shape = SubResource("BoxShape3D_v0vrg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3987417, -0.45878577, -23.691725)
 
 [node name="Player" parent="." unique_id=1580578200 instance=ExtResource("2_mwfav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1814632, 2.733337, -2.3287888)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5097942, 0.82973385, -16.352432)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=26680363]
 script = ExtResource("2_rvslj")
@@ -780,7 +780,7 @@ bones/18/rotation = Quaternion(-0.0022573639, -0.014249296, -0.22423841, 0.97442
 bones/19/rotation = Quaternion(-0.010059975, 0.02443287, 0.75198597, 0.65864944)
 
 [node name="Monster2SpawnPoint" type="Marker3D" parent="." unique_id=715321279]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2002563, 3.3561485, -11.6159315)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.678222, 0.06354177, -27.766985)
 
 [node name="doors" parent="." unique_id=1329436505 instance=ExtResource("16_cvmbd")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.2415853, -0.09819996, -24.215742)

@@ -46,7 +46,7 @@ visible = false
 visible = false
 
 [node name="HidePosition" type="Marker3D" parent="." index="7" unique_id=1588889478]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.16107059, -0.40855932)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.16107059, -0.19279446)
 
 [node name="ExitPosition" type="Marker3D" parent="." index="8" unique_id=1369810503]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1911425, 0.7384634)

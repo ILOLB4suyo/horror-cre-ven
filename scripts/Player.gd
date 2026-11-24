@@ -1,3 +1,4 @@
+#Player.gd
 extends CharacterBody3D
 
 @export var walk_speed: float = 3.0
@@ -33,6 +34,7 @@ extends CharacterBody3D
 @export var interaction_distance: float = 3.0
 
 
+
 var is_hiding: bool = false
 var current_locker: Interactable = null
 
@@ -47,13 +49,21 @@ var is_dead: bool = false
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var hud = $"../HUD"
 
+@onready var animation_player: AnimationPlayer = $Carmine_Headless/AnimationPlayer
+
+@onready var body_mesh: MeshInstance3D = $Carmine_Headless/Armature/Skeleton3D/body
+@onready var ribbon_mesh: MeshInstance3D = $Carmine_Headless/Armature/Skeleton3D/Ribbon
+
+@export var peek_transparency: float = 0.5
+@export var transparency_speed: float = 8.0
+
 const GRAVITY: float = 9.8
 
 var look_x: float = 0.0
 
 var peek_direction: int = 0
 
-
+var idle_playing_backward: bool = false
 
 
 enum MovementState{
@@ -76,6 +86,8 @@ var bob_time: float = 0.0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	animation_player.animation_finished.connect(_on_animation_finished)
 
 
 func add_item(item_id: String) -> void:
@@ -236,7 +248,8 @@ func _physics_process(delta: float) -> void:
 			0.0,
 			walk_speed
 		)
-		
+	
+	update_player_animation()
 	
 	
 	# Camera Bob
@@ -308,7 +321,7 @@ func _physics_process(delta: float) -> void:
 	elif exhausted and stamina >= stamina_recovery_threshold:
 		exhausted = false
 	
-	print("State: ", MovementState.keys()[movement_state], " | Stamina: ", stamina)
+	#print("State: ", MovementState.keys()[movement_state], " | Stamina: ", stamina)
 
 
 	var peek_target := 0.0
@@ -326,7 +339,8 @@ func _physics_process(delta: float) -> void:
 		peek_target,
 		peek_weight
 	)
-
+	
+	update_peek_transparency(delta)
 
 	move_and_slide()
 
@@ -557,3 +571,70 @@ func show_locker_exit_prompt() -> void:
 
 func hide_locker_exit_prompt() -> void:
 	hud.hide_interaction_prompt()
+
+
+func begin_death() -> void:
+	if is_dead:
+		return
+
+	is_dead = true
+	velocity = Vector3.ZERO
+
+	interaction_target = null
+	interaction_progress = 0.0
+	peek_direction = 0
+
+	hud.hide_interaction_prompt()
+
+	print("PLAYER STATUS: DEAD")
+
+
+func update_player_animation() -> void:
+	var target_animation: String = "Idle"
+
+	match movement_state:
+		MovementState.IDLE:
+			target_animation = "Idle"
+
+		MovementState.WALKING, MovementState.RUNNING, MovementState.SNEAKING:
+			target_animation = "Walk"
+
+	if animation_player.current_animation != target_animation:
+		idle_playing_backward = false
+		animation_player.play(target_animation)
+
+
+func _on_animation_finished(animation_name: StringName) -> void:
+	if animation_name != "Idle":
+		return
+
+	if movement_state != MovementState.IDLE:
+		return
+
+	if idle_playing_backward:
+		# Setelah backward selesai, mainkan forward
+		idle_playing_backward = false
+		animation_player.play("Idle")
+	else:
+		# Setelah forward selesai, mainkan backward
+		idle_playing_backward = true
+		animation_player.play("Idle", -1, -1.0, true)
+
+
+func update_peek_transparency(delta: float) -> void:
+	var target_transparency: float = 0.0
+
+	if peek_direction != 0:
+		target_transparency = peek_transparency
+
+	body_mesh.transparency = move_toward(
+		body_mesh.transparency,
+		target_transparency,
+		transparency_speed * delta
+	)
+
+	ribbon_mesh.transparency = move_toward(
+		ribbon_mesh.transparency,
+		target_transparency,
+		transparency_speed * delta
+	)

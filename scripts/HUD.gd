@@ -91,3 +91,13 @@ func show_document(title: String, content: String) -> void:
 
 func hide_document() -> void:
 	document_overlay.visible = false
+
+func show_death_screen() -> void:
+	death_overlay.visible = true
+
+	jumpscare_video.stop()
+	jumpscare_video.visible = false
+
+	death_panel.visible = true
+
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cpbypv7vt5ku2" path="res://scenes/Monsters.tscn" id="12_bjd11"]
 [ext_resource type="PackedScene" uid="uid://usf2cn413f8t" path="res://scenes/locker.tscn" id="15_3p2gp"]
 [ext_resource type="PackedScene" uid="uid://beuj3p6cy17t1" path="res://scenes/doors.tscn" id="16_cvmbd"]
+[ext_resource type="PackedScene" uid="uid://cgq1nhfcsj4pl" path="res://Map.glb" id="17_bb450"]
 [ext_resource type="PackedScene" uid="uid://da4wj64y0yscv" path="res://scenes/Monster2.tscn" id="17_ft6cd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8f85w"]
@@ -32,7 +33,7 @@ material = SubResource("StandardMaterial3D_rvslj")
 size = Vector3(12.816467, 0.47961426, 1.6673584)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rarhs"]
-size = Vector3(91.296265, 0.48937988, 88.16725)
+size = Vector3(184.2995, 0.48937988, 145.65784)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elqb8"]
 albedo_color = Color(0.5411765, 0.1254902, 0.1254902, 1)
@@ -234,14 +235,13 @@ light_energy = 0.748
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=375513422 groups=["navigation_mesh"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9300588, 0)
-visible = false
 
 [node name="Floor1" type="MeshInstance3D" parent="Floor" unique_id=1584253592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93252563, 0.26019287, 4.2683682)
 mesh = SubResource("BoxMesh_8f85w")
 
 [node name="FloorCol31" type="CollisionShape3D" parent="Floor" unique_id=680621841]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5153961, 0.05046457, -20.195805)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.017014, 0.05046457, 8.549488)
 shape = SubResource("BoxShape3D_rarhs")
 debug_color = Color(0.97984916, 0, 0.38853702, 0.41960785)
 
@@ -528,7 +528,7 @@ shape = SubResource("BoxShape3D_v0vrg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3987417, -0.45878577, -23.691725)
 
 [node name="Player" parent="." unique_id=1580578200 instance=ExtResource("2_mwfav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9803696, 2.733337, -8.026262)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1814632, 2.733337, -2.3287888)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=26680363]
 script = ExtResource("2_rvslj")
@@ -764,6 +764,21 @@ catch_distance = 1.7
 patrol_points = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2"), NodePath("../PatrolPoints/PatrolPoint3"), NodePath("../PatrolPoints/PatrolPoint4")]
 jumpscare_video = ExtResource("4_cvmbd")
 
+[node name="Skeleton3D" parent="Monster/zombies/Armature" parent_id_path=PackedInt32Array(504227797, 443985376, 488203201) index="0" unique_id=1665245879]
+bones/0/rotation = Quaternion(-0.0037586547, -0.00042720325, 0.027387448, 0.9996178)
+bones/3/rotation = Quaternion(0.010743446, -0.0033994014, -0.049023, 0.9987341)
+bones/5/rotation = Quaternion(0.443605, -0.37790257, -0.15541366, 0.7976534)
+bones/6/rotation = Quaternion(0.12347102, -0.011848293, -0.11317062, 0.9858027)
+bones/7/rotation = Quaternion(-0.0029996473, 0.029880797, -0.063907206, 0.9975039)
+bones/9/rotation = Quaternion(0.03723802, 0.060167603, 0.55900747, 0.826138)
+bones/10/rotation = Quaternion(0.13367268, 0.043916196, 0.057489708, 0.98838156)
+bones/13/rotation = Quaternion(-0.6709361, -0.08288444, -0.08268806, 0.7322142)
+bones/14/rotation = Quaternion(0.011285192, 0.0066773887, 0.118698224, 0.99284387)
+bones/15/rotation = Quaternion(0.015097988, 0.020412939, -0.7051622, 0.70859134)
+bones/17/rotation = Quaternion(-0.6542798, -0.14332803, -0.14002444, 0.72922444)
+bones/18/rotation = Quaternion(-0.0022573639, -0.014249296, -0.22423841, 0.9744275)
+bones/19/rotation = Quaternion(-0.010059975, 0.02443287, 0.75198597, 0.65864944)
+
 [node name="Monster2SpawnPoint" type="Marker3D" parent="." unique_id=715321279]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2002563, 3.3561485, -11.6159315)
 
@@ -799,12 +814,45 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.2
 hide_position = NodePath("HidePosition")
 exit_position = NodePath("ExitPosition")
 
+[node name="Map2" parent="." unique_id=179661951 instance=ExtResource("17_bb450")]
+transform = Transform3D(0.605, 0, 0, 0, 0.605, 0, 0, 0, 0.605, -82.35974, 0, 0)
+
+[node name="Skeleton3D" parent="Map2/Armature" parent_id_path=PackedInt32Array(179661951, 100862979) index="2" unique_id=1230679148]
+bones/0/rotation = Quaternion(0.028483743, 0, 0, 0.9995943)
+bones/3/position = Vector3(3.3054403e-07, 0.24478398, -6.9067028e-09)
+bones/3/rotation = Quaternion(-0.067616135, 0.10883292, 0.47745374, 0.8692648)
+bones/4/rotation = Quaternion(0.45358223, 0.06339518, 0.77990836, 0.4265995)
+bones/5/rotation = Quaternion(0.09573515, 0.15574543, 0.4522957, 0.87292993)
+bones/6/position = Vector3(-8.576308e-08, 0.11659934, -1.5974729e-07)
+bones/8/position = Vector3(-8.095117e-08, 0.1165993, -8.988718e-08)
+bones/12/position = Vector3(-3.3054403e-07, 0.24478398, -6.9067028e-09)
+bones/12/rotation = Quaternion(-0.2168643, -0.38502914, -0.415851, 0.7948525)
+bones/13/rotation = Quaternion(0.2572409, 0.046589915, -0.85348886, 0.45079193)
+bones/14/rotation = Quaternion(0.16556042, 0.3672435, -0.28836328, 0.86865914)
+bones/19/position = Vector3(3.167179e-08, 0.05356886, 1.3302133e-07)
+bones/22/position = Vector3(1.5935534, 2.051222, -0.35015035)
+bones/22/rotation = Quaternion(-5.341866e-08, 0.70666176, 0.70755154, -5.335148e-08)
+bones/24/rotation = Quaternion(-0.46790722, 9.3578066e-08, -6.683999e-08, 0.8837776)
+bones/25/position = Vector3(0, 0.91197425, 9.0631147e-10)
+bones/25/rotation = Quaternion(0.005869521, -2.857132e-07, -1.519842e-08, 0.9999828)
+bones/27/position = Vector3(-3.1719537e-08, 0.1364843, -6.3157586e-09)
+bones/27/rotation = Quaternion(0.00041195488, 1.2589489e-07, 0.6726816, 0.739932)
+bones/28/rotation = Quaternion(0.6332521, 0.3146294, 0.6332523, -0.31462947)
+bones/29/position = Vector3(0, 0.35411283, 2.2143922e-09)
+bones/29/rotation = Quaternion(-0.46790716, -9.357807e-08, 6.683999e-08, 0.8837776)
+bones/30/position = Vector3(0, 0.91197425, -1.0203166e-08)
+bones/30/rotation = Quaternion(0.0058694705, 2.857132e-07, 1.5198435e-08, 0.9999828)
+bones/32/rotation = Quaternion(0.0004163007, -1.14235704e-07, -0.67977947, 0.7334165)
+
 [editable path="Documents"]
 [editable path="items"]
 [editable path="LiftDoors"]
 [editable path="Keycard"]
+[editable path="Monster"]
+[editable path="Monster/zombies"]
 [editable path="doors"]
 [editable path="doors2"]
 [editable path="doors3"]
 [editable path="doors4"]
 [editable path="Locker"]
+[editable path="Map2"]

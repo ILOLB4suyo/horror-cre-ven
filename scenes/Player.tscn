@@ -28,3 +28,23 @@ mesh = SubResource("CapsuleMesh_8f85w")
 
 [node name="Carmine_Headless" parent="." unique_id=1372846856 instance=ExtResource("2_v6fml")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.01992625, -0.62049913, -0.04972911)
+
+[node name="Skeleton3D" parent="Carmine_Headless/Armature" parent_id_path=PackedInt32Array(1372846856, 302503176) index="0" unique_id=1189889663]
+bones/0/rotation = Quaternion(0.028483743, 0, 0, 0.9995943)
+bones/3/rotation = Quaternion(-0.067616135, 0.10883292, 0.47745374, 0.8692648)
+bones/4/rotation = Quaternion(0.45358223, 0.06339518, 0.77990836, 0.4265995)
+bones/5/rotation = Quaternion(0.09573515, 0.15574543, 0.4522957, 0.87292993)
+bones/12/rotation = Quaternion(-0.2168643, -0.38502914, -0.415851, 0.7948525)
+bones/13/rotation = Quaternion(0.2572409, 0.046589915, -0.85348886, 0.45079193)
+bones/14/rotation = Quaternion(0.16556042, 0.3672435, -0.28836328, 0.86865914)
+bones/22/position = Vector3(1.6546342, 2.1600375, -0.4889505)
+bones/22/rotation = Quaternion(-5.341866e-08, 0.70666176, 0.70755154, -5.335148e-08)
+bones/24/rotation = Quaternion(-0.46388808, 0.055153653, 0.11858955, 0.8761864)
+bones/25/rotation = Quaternion(0.00586952, -2.8548345e-07, -9.323647e-09, 0.9999828)
+bones/27/rotation = Quaternion(0.0017031607, 0.0060296007, 0.56759095, 0.8232869)
+bones/28/rotation = Quaternion(0.6332521, 0.3146294, 0.6332523, -0.31462947)
+bones/29/rotation = Quaternion(-0.4591347, 0.08127509, 0.1747556, 0.86720824)
+bones/30/rotation = Quaternion(0.005833566, -0.0050505796, 0.11037542, 0.99386007)
+bones/32/rotation = Quaternion(0.0003894884, -1.2183226e-07, -0.6359959, 0.77169234)
+
+[editable path="Carmine_Headless"]

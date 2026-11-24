@@ -146,10 +146,10 @@ theme_override_fonts/font = SubResource("SystemFont_3gngh")
 theme_override_font_sizes/font_size = 99
 text = "Carmine"
 
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1464761301]
 stream = ExtResource("3_2wh52")
 autoplay = true
 parameters/looping = true
-
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

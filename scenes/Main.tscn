@@ -1100,7 +1100,7 @@ catch_distance = 1.7
 patrol_points = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2"), NodePath("../PatrolPoints/PatrolPoint3"), NodePath("../PatrolPoints/PatrolPoint4")]
 jumpscare_video = ExtResource("4_cvmbd")
 
-[node name="Skeleton3D" parent="Monster/zombies/Armature" parent_id_path=PackedInt32Array(504227797, 443985376, 488203201) index="0" unique_id=1665245879]
+[node name="Skeleton3D" parent="Monster/zombies/Armature" parent_id_path=PackedInt32Array(504227797, 443985376, 2000604005) index="0" unique_id=78279153]
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/3/rotation = Quaternion(0, 1.4210855e-14, 0, 1)
@@ -1160,8 +1160,11 @@ exit_position = NodePath("ExitPosition")
 [node name="Map2" parent="." unique_id=179661951 instance=ExtResource("17_bb450")]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -82.35974, 0, 0)
 
-[node name="Lobby" parent="Map2" index="90" unique_id=1321166833]
+[node name="Lobby" parent="Map2" index="90" unique_id=24237271]
 mesh = SubResource("ArrayMesh_yxlcp")
+
+[node name="Map3" parent="." unique_id=607800055 instance=ExtResource("17_bb450")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.76721, -0.0026402473, 12.597399)
 
 [editable path="Documents"]
 [editable path="items"]

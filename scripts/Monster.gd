@@ -69,6 +69,15 @@ func _ready() -> void:
 	navigation_agent.path_desired_distance = 0.5
 	navigation_agent.target_desired_distance = 0.8
 
+	# Aktifkan penghindaran antar-Monster
+	navigation_agent.avoidance_enabled = true
+	navigation_agent.radius = 0.8
+	navigation_agent.neighbor_distance = 5.0
+	navigation_agent.max_neighbors = 10
+	navigation_agent.time_horizon_agents = 2.0
+
+	navigation_agent.velocity_computed.connect(_on_velocity_computed)
+
 	last_stuck_check_position = global_position
 
 	# Tunggu navigation map siap.
@@ -292,8 +301,8 @@ func move_toward_target(speed: float, delta: float) -> void:
 
 	direction = direction.normalized()
 
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	var desired_velocity := direction * speed
+	navigation_agent.velocity = desired_velocity
 
 	var target_angle := atan2(-direction.x, -direction.z)
 	rotation.y = lerp_angle(
@@ -302,6 +311,9 @@ func move_toward_target(speed: float, delta: float) -> void:
 		1.0 - exp(-rotation_speed * delta)
 	)
 
+func _on_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity.x = safe_velocity.x
+	velocity.z = safe_velocity.z
 
 func check_if_stuck(delta: float) -> void:
 	stuck_timer += delta

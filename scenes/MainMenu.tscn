@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cocvjfyqce2an" path="res://scenes/main_menu.gd" id="1_0ykhv"]
 [ext_resource type="PackedScene" uid="uid://cgq1nhfcsj4pl" path="res://Map.glb" id="1_yqorp"]
+[ext_resource type="AudioStream" uid="uid://cts8nb5a3nji3" path="res://assets/Loading_.mp3" id="3_2wh52"]
 
 [sub_resource type="Environment" id="Environment_yqorp"]
 background_energy_multiplier = 0.1
@@ -144,6 +145,11 @@ offset_bottom = 175.0
 theme_override_fonts/font = SubResource("SystemFont_3gngh")
 theme_override_font_sizes/font_size = 99
 text = "Carmine"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1464761301]
+stream = ExtResource("3_2wh52")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

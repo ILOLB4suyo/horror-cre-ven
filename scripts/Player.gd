@@ -54,7 +54,7 @@ var is_dead: bool = false
 @onready var body_mesh: MeshInstance3D = $Carmine_Headless/Armature/Skeleton3D/body
 @onready var ribbon_mesh: MeshInstance3D = $Carmine_Headless/Armature/Skeleton3D/Ribbon
 
-@export var peek_transparency: float = 0.5
+@export var peek_transparency: float = 0.75
 @export var transparency_speed: float = 8.0
 
 const GRAVITY: float = 9.8

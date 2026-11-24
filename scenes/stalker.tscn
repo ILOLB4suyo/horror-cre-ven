@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b5c2wcrg71hg1"]
+
+[ext_resource type="Script" uid="uid://ca48hdghh5re5" path="res://scripts/Stalker.gd" id="1_5g5gq"]
+[ext_resource type="PackedScene" uid="uid://da8ipjvren3us" path="res://assets/characters/StalkerModel.glb" id="1_50p42"]
+[ext_resource type="VideoStream" uid="uid://brt8ipc70ks5a" path="res://assets/Jumpscare/StalkerJumpscare.ogv" id="2_2gtbd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8f85w"]
+radius = 0.5273104
+
+[node name="Stalker" type="CharacterBody3D" unique_id=145913987]
+script = ExtResource("1_5g5gq")
+jumpscare_video = ExtResource("2_2gtbd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=564808363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4762708, 0)
+shape = SubResource("SphereShape3D_8f85w")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1758912173]
+
+[node name="StalkerModel" parent="." unique_id=9194881 instance=ExtResource("1_50p42")]
+transform = Transform3D(-1.13649605e-08, 0, 0.26, 0, 0.26, 0, -0.26, 0, -1.13649605e-08, 0.10448778, 0.84653926, 0.10893035)
+
+[node name="Skeleton3D" parent="StalkerModel/Armature" parent_id_path=PackedInt32Array(9194881, 1019307492) index="0" unique_id=1197096440]
+bones/0/position = Vector3(0, -0.40860307, 0)
+bones/0/rotation = Quaternion(0, 0, -0.059633456, 0.9982203)
+bones/1/rotation = Quaternion(-0.04195742, 0.058141515, -0.19027936, 0.9791082)
+bones/4/rotation = Quaternion(0.040135242, -0.0865449, 0.21659106, 0.97159016)
+bones/5/rotation = Quaternion(0.7310749, 1.6740496e-07, 1.8039661e-07, 0.68229717)
+bones/6/rotation = Quaternion(-0.10954083, -0.024928847, -0.3152242, 0.9423445)
+bones/7/rotation = Quaternion(0.4379932, 2.184537e-07, 5.1143223e-07, 0.8989783)
+bones/8/rotation = Quaternion(0.16583125, -0.0027598029, -0.10882477, 0.9801274)
+bones/16/rotation = Quaternion(-0.74403733, -0.0054354463, -0.010745343, 0.6680295)
+bones/17/rotation = Quaternion(-0.18376254, -0.0427885, 0.27840665, 0.94174856)
+bones/18/rotation = Quaternion(-0.35657573, 0.0095909005, -0.014660214, 0.93410224)
+bones/19/rotation = Quaternion(-0.10744892, -0.00027375127, 0.00017686747, 0.9942106)
+bones/26/position = Vector3(-1.3322676e-15, -0.40850025, -2.0371227e-10)
+bones/26/rotation = Quaternion(0.9928776, -0.11165465, -0.0026714543, -0.041477405)
+bones/27/rotation = Quaternion(-0.0009766399, 0.0020568587, 7.123688e-06, 0.99999744)
+
+[editable path="StalkerModel"]

@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bun7vh6521kc6" path="res://scenes/LiftDoors.tscn" id="7_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://ccb15538bgfiv" path="res://scenes/keycard.tscn" id="8_jlsqs"]
 [ext_resource type="PackedScene" uid="uid://cpbypv7vt5ku2" path="res://scenes/Monsters.tscn" id="12_bjd11"]
+[ext_resource type="PackedScene" uid="uid://b5c2wcrg71hg1" path="res://scenes/stalker.tscn" id="13_bb450"]
 [ext_resource type="PackedScene" uid="uid://usf2cn413f8t" path="res://scenes/locker.tscn" id="15_3p2gp"]
 [ext_resource type="PackedScene" uid="uid://beuj3p6cy17t1" path="res://scenes/doors.tscn" id="16_cvmbd"]
 [ext_resource type="PackedScene" uid="uid://cgq1nhfcsj4pl" path="res://Map.glb" id="17_bb450"]
@@ -736,8 +737,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3682336, -0.44438693, -10.
 [node name="Keycard" parent="." unique_id=475385980 instance=ExtResource("8_jlsqs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2445326, -0.30914122, -25.523006)
 
-[node name="KeyCard" parent="Keycard" index="0" unique_id=945004753]
+[node name="KeyCard" parent="Keycard" index="0" unique_id=945004753 node_paths=PackedStringArray("stalker_spawn_point", "stalker_patrol_points")]
 item_id = "lift"
+spawn_stalker_on_pickup = true
+stalker_scene = ExtResource("13_bb450")
+stalker_spawn_point = NodePath("../../StalkerSpawnPoint")
+stalker_patrol_points = [NodePath("../../PatrolPoints/PatrolPoint1"), NodePath("../../PatrolPoints/PatrolPoint2")]
 
 [node name="PatrolPoints" type="Node3D" parent="." unique_id=1523040316]
 
@@ -764,23 +769,11 @@ catch_distance = 1.7
 patrol_points = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2"), NodePath("../PatrolPoints/PatrolPoint3"), NodePath("../PatrolPoints/PatrolPoint4")]
 jumpscare_video = ExtResource("4_cvmbd")
 
-[node name="Skeleton3D" parent="Monster/zombies/Armature" parent_id_path=PackedInt32Array(504227797, 443985376, 488203201) index="0" unique_id=1665245879]
-bones/0/rotation = Quaternion(-0.0037586547, -0.00042720325, 0.027387448, 0.9996178)
-bones/3/rotation = Quaternion(0.010743446, -0.0033994014, -0.049023, 0.9987341)
-bones/5/rotation = Quaternion(0.443605, -0.37790257, -0.15541366, 0.7976534)
-bones/6/rotation = Quaternion(0.12347102, -0.011848293, -0.11317062, 0.9858027)
-bones/7/rotation = Quaternion(-0.0029996473, 0.029880797, -0.063907206, 0.9975039)
-bones/9/rotation = Quaternion(0.03723802, 0.060167603, 0.55900747, 0.826138)
-bones/10/rotation = Quaternion(0.13367268, 0.043916196, 0.057489708, 0.98838156)
-bones/13/rotation = Quaternion(-0.6709361, -0.08288444, -0.08268806, 0.7322142)
-bones/14/rotation = Quaternion(0.011285192, 0.0066773887, 0.118698224, 0.99284387)
-bones/15/rotation = Quaternion(0.015097988, 0.020412939, -0.7051622, 0.70859134)
-bones/17/rotation = Quaternion(-0.6542798, -0.14332803, -0.14002444, 0.72922444)
-bones/18/rotation = Quaternion(-0.0022573639, -0.014249296, -0.22423841, 0.9744275)
-bones/19/rotation = Quaternion(-0.010059975, 0.02443287, 0.75198597, 0.65864944)
-
 [node name="Monster2SpawnPoint" type="Marker3D" parent="." unique_id=715321279]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.678222, 0.06354177, -27.766985)
+
+[node name="StalkerSpawnPoint" type="Marker3D" parent="." unique_id=1838124342]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0913577, 0.06354177, -10.303127)
 
 [node name="doors" parent="." unique_id=1329436505 instance=ExtResource("16_cvmbd")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.2415853, -0.09819996, -24.215742)

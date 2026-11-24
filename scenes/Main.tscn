@@ -224,6 +224,9 @@ albedo_color = Color(0, 0, 0, 1)
 material = SubResource("StandardMaterial3D_q8u5g")
 size = Vector3(0.65234375, 0.41015625, 1)
 
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_energy_multiplier = 0.1
+
 [node name="Main" type="Node3D" unique_id=1343677082]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1928176666]
@@ -765,7 +768,7 @@ catch_distance = 1.7
 patrol_points = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2"), NodePath("../PatrolPoints/PatrolPoint3"), NodePath("../PatrolPoints/PatrolPoint4")]
 jumpscare_video = ExtResource("4_cvmbd")
 
-[node name="Skeleton3D" parent="Monster/zombies/Armature" parent_id_path=PackedInt32Array(504227797, 443985376, 488203201) index="0" unique_id=1665245879]
+[node name="Skeleton3D" parent="Monster/zombies/Armature" parent_id_path=PackedInt32Array(504227797, 443985376, 2000604005) index="0" unique_id=78279153]
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/3/rotation = Quaternion(0, 1.4210855e-14, 0, 1)
@@ -824,6 +827,82 @@ exit_position = NodePath("ExitPosition")
 
 [node name="Map3" parent="." unique_id=607800055 groups=["navigation_mesh"] instance=ExtResource("17_bb450")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.79574, -0.0026402473, 12.597399)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1187298553]
+environment = SubResource("Environment_g4v7s")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment" unique_id=282053605]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, -134.58385, 9.765553, 5.3390083)
+light_energy = 0.73
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D" unique_id=913717234]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, 25.532005, -1.7363911, -0.36289787)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=1399223324]
+transform = Transform3D(1, 0, 0, 0, -0.0007157767, 0.9999998, 0, -0.9999998, -0.0007157767, -11.834358, -0.21085262, 1.6666937)
+omni_range = 13.404372
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=751959414]
+transform = Transform3D(1, 0, 0, 0, -0.0007157775, 0.99999976, 0, -0.99999976, -0.0007157775, -16.72554, -0.25131226, 29.92965)
+omni_range = 13.404372
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=1596870014]
+transform = Transform3D(1, 0, 0, 0, -0.00071577774, 0.99999976, 0, -0.99999976, -0.00071577774, 3.232933, -0.25131226, 29.92965)
+omni_range = 13.404372
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=1934716251]
+transform = Transform3D(1, 0, 0, 0, -0.00071577856, 0.9999998, 0, -0.9999998, -0.00071577856, 29.858353, -0.27195072, 44.34601)
+omni_range = 13.404372
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=66430466]
+transform = Transform3D(1, 0, 0, 0, -0.0007157788, 0.9999998, 0, -0.9999998, -0.0007157788, 29.858353, -0.21947479, 7.6898403)
+omni_range = 13.404372
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=107450447]
+transform = Transform3D(1, 0, 0, 0, -0.0007157794, 0.99999976, 0, -0.99999976, -0.0007157794, 42.886482, -0.18977356, -13.058241)
+omni_range = 13.404372
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=1600014317]
+transform = Transform3D(1, 0, 0, 0, -0.0007157797, 0.9999998, 0, -0.9999998, -0.0007157797, 42.886482, -0.16865253, -27.811884)
+omni_range = 13.404372
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=953922029]
+transform = Transform3D(1, 0, 0, 0, -0.00071577996, 0.9999998, 0, -0.9999998, -0.00071577996, 4.089348, -0.16865253, -27.811884)
+omni_range = 13.404372
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=338712306]
+transform = Transform3D(1, 0, 0, 0, -0.0007157802, 0.9999998, 0, -0.9999998, -0.0007157802, 4.089348, -0.14818668, -42.10799)
+omni_range = 13.404372
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D" unique_id=1065898283]
+transform = Transform3D(1, 0, 0, 0, -0.0007157781, 0.9999998, 0, -0.9999998, -0.0007157781, -0.6738968, -0.28098202, 50.654808)
+omni_range = 13.404372
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D" unique_id=1511157224]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, -1.1949158, -21.28536, -0.33118343)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D2" unique_id=556757630]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, 25.532005, -1.7363911, -0.36289692)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D2/OmniLight3D" unique_id=1794239731]
+transform = Transform3D(1, 0, 0, 0, -0.0007157767, 0.9999998, 0, -0.9999998, -0.0007157767, -11.834358, -0.21085262, 1.6666937)
+omni_range = 13.404372
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D" unique_id=1658551856]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, -1.1949158, -38.06371, -0.34319305)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D3" unique_id=1595015467]
+transform = Transform3D(1, 0, 0, 0, -0.00071577623, 0.99999976, 0, -0.99999976, -0.00071577623, 25.532005, -1.7363911, -0.36289692)
+omni_range = 13.404372
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment/OmniLight3D/OmniLight3D3/OmniLight3D" unique_id=1183109577]
+transform = Transform3D(1, 0, 0, 0, -0.0007157767, 0.9999998, 0, -0.9999998, -0.0007157767, -11.834358, -0.21085262, 1.6666937)
+omni_range = 13.404372
 
 [editable path="Documents"]
 [editable path="items"]

@@ -51,11 +51,11 @@ func play_death_sequence(video: VideoStream) -> void:
 	death_overlay.visible = true
 	death_panel.visible = false
 
-	# Putar audio jumpscare
+
 	jumpscare_audio.stop()
 	jumpscare_audio.play()
 
-	# Putar video jumpscare
+
 	jumpscare_video.stream = video
 	jumpscare_video.visible = true
 	jumpscare_video.play()

@@ -159,8 +159,7 @@ func follow_delayed_position(delta: float) -> void:
 	var direction: Vector3 = next_position - global_position
 	direction.y = 0.0
 
-	# Jika waypoint terlalu dekat, gunakan arah ke target akhir
-	# agar Monster2 tidak terus berhenti pada waypoint yang sama.
+
 	if direction.length_squared() < 0.01:
 		direction = target_position - global_position
 		direction.y = 0.0
@@ -173,13 +172,12 @@ func follow_delayed_position(delta: float) -> void:
 	direction = direction.normalized()
 
 
-	# Hitung jarak horizontal Monster2 terhadap Player
+
 	var distance_to_player: float = Vector2(
 		global_position.x - player.global_position.x,
 		global_position.z - player.global_position.z
 	).length()
 
-	# Tentukan tingkat percepatan berdasarkan jarak
 	var catch_up_factor: float = inverse_lerp(
 		catch_up_start_distance,
 		catch_up_full_distance,
@@ -188,14 +186,13 @@ func follow_delayed_position(delta: float) -> void:
 
 	catch_up_factor = clampf(catch_up_factor, 0.0, 1.0)
 
-	# Kecepatan meningkat secara bertahap
 	var current_follow_speed: float = lerpf(
 		follow_speed,
 		max_follow_speed,
 		catch_up_factor
 	)
 
-	# Kecepatan mengikuti arah waypoint
+
 	var target_velocity: Vector3 = direction * current_follow_speed
 
 	velocity.x = move_toward(
@@ -210,7 +207,6 @@ func follow_delayed_position(delta: float) -> void:
 		follow_acceleration * delta
 	)
 
-	# Rotasi mengikuti arah gerakan sebenarnya
 	var horizontal_velocity := Vector3(
 		velocity.x,
 		0.0,

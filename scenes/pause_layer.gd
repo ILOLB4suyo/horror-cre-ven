@@ -10,18 +10,18 @@ var is_paused = false
 
 
 func _ready():
-	# PauseLayer tetap berjalan ketika game di-pause
+
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	# Sembunyikan menu saat gameplay dimulai
+
 	pause_background.hide()
 	pause_menu.hide()
 
-	# Hubungkan tombol
+
 	continue_button.pressed.connect(_on_continue_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
 
-	# Awal permainan, mouse terkunci
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 

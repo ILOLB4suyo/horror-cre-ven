@@ -69,7 +69,7 @@ func _ready() -> void:
 	navigation_agent.path_desired_distance = 0.5
 	navigation_agent.target_desired_distance = 0.8
 
-	# Aktifkan penghindaran antar-Monster
+
 	navigation_agent.avoidance_enabled = true
 	navigation_agent.radius = 0.8
 	navigation_agent.neighbor_distance = 5.0
@@ -80,7 +80,7 @@ func _ready() -> void:
 
 	last_stuck_check_position = global_position
 
-	# Tunggu navigation map siap.
+
 	await get_tree().physics_frame
 
 	if patrol_points.size() > 0:
@@ -188,7 +188,7 @@ func start_search() -> void:
 
 func search_for_player(delta: float) -> void:
 	
-		# Berhenti sebentar sebelum mulai mencari posisi terakhir Player
+
 	if search_pause_timer > 0.0:
 		search_pause_timer -= delta
 
@@ -370,11 +370,10 @@ func has_line_of_sight() -> bool:
 
 	var result := get_world_3d().direct_space_state.intersect_ray(query)
 
-	# Tidak ada objek yang menghalangi pandangan.
+
 	if result.is_empty():
 		return true
 
-	# Raycast mengenai player atau node anak milik player.
 	var collider = result.get("collider")
 
 	if collider == player:

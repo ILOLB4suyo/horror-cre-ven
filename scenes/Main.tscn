@@ -834,7 +834,9 @@ shape = SubResource("BoxShape3D_v0vrg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3987417, -0.45878577, -23.691725)
 
 [node name="Player" parent="." unique_id=1580578200 instance=ExtResource("2_mwfav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.77923, 1.0484544, 44.535477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.78892, 1.0484544, 44.535477)
+collision_layer = 1
+collision_mask = 1
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=26680363]
 script = ExtResource("2_rvslj")
@@ -1029,8 +1031,9 @@ visible = false
 [node name="items" parent="." unique_id=854294333 instance=ExtResource("6_c01mt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128.49414, 0.8625702, 33.754154)
 
-[node name="KeyItem" parent="items" index="0" unique_id=869853859 node_paths=PackedStringArray("stalker_spawn_point", "stalker_patrol_points", "monster2_spawn_point")]
+[node name="KeyItem" parent="items" index="0" unique_id=869853859 node_paths=PackedStringArray("keycard_spawn_points", "stalker_spawn_point", "stalker_patrol_points", "monster2_spawn_point")]
 item_id = "key_blue"
+keycard_spawn_points = [NodePath("../../KeyCardSpawnPoints/SpawnPoint1"), NodePath("../../KeyCardSpawnPoints/SpawnPoint2"), NodePath("../../KeyCardSpawnPoints/SpawnPoint3")]
 spawn_stalker_on_pickup = true
 stalker_scene = ExtResource("13_bb450")
 stalker_spawn_point = NodePath("../../StalkerSpawnPoint")
@@ -1057,7 +1060,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.40654, 0, 35.106293)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.05564, 0.37168944, 3.8490212)
 
 [node name="Monster" parent="." unique_id=504227797 node_paths=PackedStringArray("patrol_points") instance=ExtResource("12_bjd11")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.54755, 0.21765447, 60.743576)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.278786, 0.21765447, 52.429573)
 chase_speed = 3.5
 lose_target_range = 3.0
 catch_distance = 1.7
@@ -1943,9 +1946,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1936035, 1.9793396, 4.49371
 shape = SubResource("BoxShape3D_8d8pf")
 
 [node name="EndingScreen" type="CanvasLayer" parent="." unique_id=348972069]
-visible = false
 
 [node name="FadeRect" type="ColorRect" parent="EndingScreen" unique_id=1955914999]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

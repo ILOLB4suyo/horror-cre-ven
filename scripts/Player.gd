@@ -278,7 +278,7 @@ func _physics_process(delta: float) -> void:
 
 	if new_target != interaction_target:
 
-		# Batalkan interaksi pada objek sebelumnya
+
 		if interaction_target != null and interaction_progress > 0.0:
 			interaction_target.interaction_cancelled(self)
 
@@ -629,11 +629,11 @@ func _on_animation_finished(animation_name: StringName) -> void:
 		return
 
 	if idle_playing_backward:
-		# Setelah backward selesai, mainkan forward
+
 		idle_playing_backward = false
 		animation_player.play("Idle")
 	else:
-		# Setelah forward selesai, mainkan backward
+
 		idle_playing_backward = true
 		animation_player.play("Idle", -1, -1.0, true)
 

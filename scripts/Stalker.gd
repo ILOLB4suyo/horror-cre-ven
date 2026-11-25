@@ -69,7 +69,7 @@ func _ready() -> void:
 	navigation_agent.path_desired_distance = 0.5
 	navigation_agent.target_desired_distance = 0.8
 	
-	# Aktifkan penghindaran antar Monster dan Stalker
+
 	navigation_agent.avoidance_enabled = true
 	navigation_agent.radius = 0.8
 	navigation_agent.neighbor_distance = 5.0
@@ -139,7 +139,7 @@ func update_state() -> void:
 		player.global_position
 	)
 
-	# Periksa jarak tangkap sebelum memproses state lainnya.
+
 	if distance_to_player <= catch_distance:
 		catch_player()
 		return
@@ -312,10 +312,9 @@ func move_toward_target(speed: float, delta: float) -> void:
 
 	direction = direction.normalized()
 
-	# Kecepatan yang diinginkan sebelum avoidance
+
 	var desired_velocity := direction * speed
 
-	# Minta NavigationAgent menghitung jalur aman
 	navigation_agent.velocity = desired_velocity
 
 	var target_angle := atan2(-direction.x, -direction.z)
